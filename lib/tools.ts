@@ -41,7 +41,7 @@ export const TOOLS: Tool[] = [
   { id: "qr-size", name: "QR Size Calculator", summary: "Work out how big to print a QR code for a scanning distance.", href: "/qr-size-calculator/", category: "utility", status: "soon" },
 
   // Barcode tools
-  { id: "barcode-generator", name: "Barcode Generator", summary: "Create EAN, UPC, Code 128, Data Matrix and other barcodes.", href: "/barcode-generator/", category: "barcode", status: "soon" },
+  { id: "barcode-generator", name: "Barcode Generator", summary: "Create EAN-13, UPC, Code 128, ITF-14, Data Matrix and other barcodes.", href: "/barcode-generator/", category: "barcode", status: "live", indexable: true },
   { id: "barcode-scanner", name: "Barcode Scanner", summary: "Scan 1D and 2D barcodes with your camera.", href: "/barcode-scanner/", category: "scanner", status: "soon" },
   { id: "barcode-decoder", name: "Barcode Decoder", summary: "Read a barcode from an image file.", href: "/barcode-decoder/", category: "barcode", status: "soon" },
   { id: "barcode-validator", name: "Barcode Validator", summary: "Check a barcode number's structure and check digit.", href: "/barcode-validator/", category: "barcode", status: "soon" },

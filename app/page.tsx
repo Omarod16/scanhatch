@@ -39,7 +39,7 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
-            <SoonButton>Create Barcode</SoonButton>
+            <Link href="/barcode-generator/" className="btn-secondary">Create Barcode</Link>
             <SoonButton>Scan Code</SoonButton>
           </div>
           <p className="mt-4 text-sm text-mist">
