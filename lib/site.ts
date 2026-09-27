@@ -1,8 +1,10 @@
-// Change this to your real domain once it's connected in Cloudflare Pages.
-// It's used for the sitemap, robots.txt and canonical metadata.
 export const SITE_URL = "https://scanhatch.com";
 
 export const SITE_NAME = "ScanHatch";
-export const SITE_TITLE = "ScanHatch | QR & Barcode Tools";
+export const SITE_TAGLINE = "QR & Barcode Tools";
+export const SITE_TITLE = "Free QR Code & Barcode Generator | ScanHatch";
 export const SITE_DESCRIPTION =
-  "ScanHatch provides QR code and barcode tools online.";
+  "Create free QR codes and barcodes online. Generate, customize, scan and decode QR codes and barcodes with ScanHatch. Fast, private and easy to use.";
+
+export const PRIVACY_PROMISE =
+  "Your codes are generated in your browser whenever possible.";

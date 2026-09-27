@@ -2,17 +2,25 @@
 
 @theme {
   --color-ink: #050b12;
+  --color-ink-2: #08131c;
   --color-panel: #0a1824;
+  --color-panel-2: #0e2030;
   --color-line: #16303f;
+  --color-line-2: #1f4155;
   --color-mist: #8aa4b4;
+  --color-fog: #c3d4de;
   --color-cyan: #22d3ee;
   --color-sky: #38bdf8;
+  --color-warn: #fbbf24;
+  --color-danger: #f87171;
+  --color-ok: #34d399;
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
 }
 
 html {
   color-scheme: dark;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -21,26 +29,90 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Faint scan-grid behind the page */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-cyan text-ink hover:bg-sky;
+}
+@utility btn-secondary {
+  @apply btn border border-line-2 bg-panel text-white hover:border-cyan/60;
+}
+@utility btn-ghost {
+  @apply btn text-fog hover:bg-panel hover:text-white;
+}
+@utility label {
+  @apply mb-1.5 block text-sm font-semibold text-fog;
+}
+@utility hint {
+  @apply mt-1.5 text-xs leading-relaxed text-mist;
+}
+@utility input {
+  @apply block min-h-11 w-full rounded-lg border border-line-2 bg-ink-2 px-3 py-2 text-[15px] text-white placeholder:text-mist/60 focus:border-cyan focus:outline-none disabled:opacity-50;
+  &[aria-invalid="true"] {
+    @apply border-danger;
+  }
+}
+@utility field-error {
+  @apply mt-1.5 text-xs font-medium text-danger;
+}
+
+@layer components {
+  .prose-page h2 { @apply mt-12 mb-4 text-2xl font-bold tracking-tight text-white; }
+  .prose-page h3 { @apply mt-8 mb-3 text-lg font-bold text-white; }
+  .prose-page p, .prose-page li { @apply leading-relaxed text-fog; }
+  .prose-page p { @apply mb-4; }
+  .prose-page ul { @apply mb-4 list-disc space-y-2 pl-5; }
+  .prose-page ol { @apply mb-4 list-decimal space-y-2 pl-5; }
+  .prose-page strong { @apply text-white; }
+  .prose-page a { @apply text-cyan underline decoration-cyan/40 underline-offset-2 hover:decoration-cyan; }
+}
+
+/* Faint scan-grid used behind hero areas */
 .scan-grid {
   background-image:
     linear-gradient(to right, rgb(34 211 238 / 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(34 211 238 / 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at top, #000 20%, transparent 70%);
 }
 
-/* The one moving thing: a scan line passing over the mark */
+/* Checkerboard to show transparency in previews */
+.checker {
+  background-color: #1a2a36;
+  background-image:
+    linear-gradient(45deg, #24384a 25%, transparent 25%),
+    linear-gradient(-45deg, #24384a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #24384a 75%),
+    linear-gradient(-45deg, transparent 75%, #24384a 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
 @keyframes scan {
   0%, 100% { transform: translateY(0); opacity: 0; }
   10%, 90% { opacity: 1; }
   50% { transform: translateY(var(--scan-distance)); }
 }
-
 .scan-line {
   animation: scan 3.2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scan-line { animation: none; opacity: 0; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scan-line { opacity: 0; }
 }

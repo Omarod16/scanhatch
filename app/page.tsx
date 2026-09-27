@@ -1,88 +1,89 @@
-function ScanMark() {
+import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+import { QuickQr } from "@/components/qr/QuickQr";
+import { ToolItem } from "@/components/ToolLinks";
+import { absoluteUrl } from "@/lib/seo";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { CATEGORY_LABELS, toolsIn, type ToolCategory } from "@/lib/tools";
+
+function SoonButton({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="relative mx-auto h-24 w-24 overflow-hidden rounded-2xl border border-line bg-panel p-3 sm:h-28 sm:w-28"
-      style={{ ["--scan-distance" as string]: "96px" }}
-      aria-hidden="true"
-    >
-      <svg viewBox="0 0 64 64" className="h-full w-full">
-        {[
-          [4, 4],
-          [36, 4],
-          [4, 36],
-        ].map(([x, y]) => (
-          <g key={`${x}-${y}`}>
-            <rect x={x + 2} y={y + 2} width="20" height="20" rx="3" fill="none" stroke="#22d3ee" strokeWidth="4" />
-            <rect x={x + 8} y={y + 8} width="8" height="8" rx="1" fill="#22d3ee" />
-          </g>
-        ))}
-        {[
-          [38, 38], [48, 38], [56, 38],
-          [43, 46], [56, 46],
-          [38, 54], [48, 54], [56, 54],
-        ].map(([x, y]) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="6" height="6" fill="#38bdf8" />
-        ))}
-      </svg>
-      <div className="scan-line pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-cyan shadow-[0_0_12px_2px_rgb(34_211_238/0.7)]" />
-    </div>
+    <span className="btn cursor-not-allowed border border-dashed border-line-2 text-mist" aria-disabled="true">
+      {children}
+      <span className="rounded-full bg-panel-2 px-2 py-0.5 text-xs font-medium">Coming soon</span>
+    </span>
   );
 }
 
+const ORDER: ToolCategory[] = ["qr", "barcode", "scanner", "utility"];
+
 export default function Home() {
   return (
-    <main className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 py-16">
-      <div className="scan-grid pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div
-        className="pointer-events-none absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/10 blur-3xl"
-        aria-hidden="true"
+    <>
+      <JsonLd
+        data={[
+          { "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: SITE_URL, description: SITE_DESCRIPTION },
+          { "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: SITE_URL, logo: absoluteUrl("/icon.svg") },
+        ]}
       />
 
-      <section className="relative mx-auto flex w-full max-w-2xl flex-col items-center text-center">
-        <ScanMark />
-
-        <h1 className="mt-8 text-5xl font-extrabold tracking-tight text-white sm:text-7xl">
-          ScanHatch
-        </h1>
-
-        <p className="mt-3 text-lg font-semibold text-cyan sm:text-xl">
-          QR &amp; Barcode Tools
-        </p>
-
-        <p className="mt-6 max-w-lg text-balance text-base leading-relaxed text-mist sm:text-lg">
-          Create, scan and decode QR codes and barcodes online.
-        </p>
-
-        <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-          <button
-            type="button"
-            className="rounded-xl bg-cyan px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-sky focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
-          >
-            Create QR Code
-          </button>
-          <button
-            type="button"
-            className="rounded-xl border border-line bg-panel px-6 py-3.5 font-semibold text-white transition-colors hover:border-cyan/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan"
-          >
-            Create Barcode
-          </button>
-        </div>
-
-        <div
-          className="mt-14 flex flex-col items-center gap-1.5 rounded-2xl border border-line bg-panel/80 px-6 py-4 text-sm sm:flex-row sm:gap-3"
-          role="status"
-        >
-          <span className="flex items-center gap-2 font-semibold text-white">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgb(52_211_153/0.8)]" />
-            Deployment Test
-          </span>
-          <span className="text-mist">ScanHatch deployment is working.</span>
+      <section className="relative overflow-hidden">
+        <div className="scan-grid pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="container-page relative pt-16 pb-14 sm:pt-24">
+          <p className="text-sm font-semibold text-cyan">ScanHatch · QR &amp; Barcode Tools</p>
+          <h1 className="mt-4 max-w-3xl text-4xl leading-[1.05] font-extrabold tracking-tight text-balance text-white sm:text-6xl">
+            Create QR Codes &amp; Barcodes in Seconds
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fog">
+            Generate, customize, scan and decode QR codes and barcodes online. Fast, free and designed with privacy in mind.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
+            <SoonButton>Create Barcode</SoonButton>
+            <SoonButton>Scan Code</SoonButton>
+          </div>
+          <p className="mt-4 text-sm text-mist">
+            Decode QR / Barcode from an image: <span className="text-fog">coming soon</span>
+          </p>
         </div>
       </section>
 
-      <footer className="relative mt-16 text-xs text-mist/70">
-        © {new Date().getFullYear()} ScanHatch
-      </footer>
-    </main>
+      <section className="container-page" aria-labelledby="quick-qr">
+        <h2 id="quick-qr" className="sr-only">Quick QR code generator</h2>
+        <QuickQr />
+      </section>
+
+      <section className="container-page mt-24" aria-labelledby="privacy">
+        <div className="grid gap-8 border-y border-line py-12 md:grid-cols-[1fr_2fr]">
+          <h2 id="privacy" className="text-2xl font-bold tracking-tight text-white">Private by design</h2>
+          <div className="space-y-4 text-fog">
+            <p>
+              Your codes are generated in your browser whenever possible. The link, WiFi password or contact details
+              you type are turned into a QR code on your own device and are not uploaded to ScanHatch.
+            </p>
+            <p>No account is needed. Logos you add stay on your device too.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-page mt-20" aria-labelledby="all-tools">
+        <div className="flex items-end justify-between gap-4">
+          <h2 id="all-tools" className="text-2xl font-bold tracking-tight text-white">Tools</h2>
+          <Link href="/tools/" className="text-sm font-semibold text-cyan hover:underline">See all tools</Link>
+        </div>
+        <div className="mt-8 space-y-10">
+          {ORDER.map((cat) => (
+            <div key={cat}>
+              <h3 className="mb-4 text-base font-bold text-fog">{CATEGORY_LABELS[cat]}</h3>
+              <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {toolsIn(cat).slice(0, cat === "qr" ? 6 : 6).map((t) => (
+                  <li key={t.id}><ToolItem tool={t} /></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
