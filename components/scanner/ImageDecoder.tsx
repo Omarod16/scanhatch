@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
-import { formatsFor, isQrFormat, normaliseResult, type NormalisedResult, type ScanMode } from "@/lib/scanner/formats";
+import { formatsFor, isQrFormat, normaliseResult, withArticle, type NormalisedResult, type ScanMode } from "@/lib/scanner/formats";
 import { IMAGE_ACCEPT, ImageInputError, readImageFile, toImageData } from "@/lib/scanner/image";
 import { decodeImageData } from "@/lib/scanner/zxing";
 import { DecodeResult } from "./DecodeResult";
@@ -118,7 +118,7 @@ export function ImageDecoder({ mode, onDecoded }: { mode: ScanMode; onDecoded?: 
           <div className="rounded-lg border border-warn/40 bg-warn/10 px-4 py-3 text-sm text-amber-100" role="alert">
             {state.other ? (
               <p>
-                No {noun(mode)} was found, but this image contains a <strong>{state.other.formatLabel}</strong>.{" "}
+                No {noun(mode)} was found, but this image contains {withArticle(state.other.formatLabel).split(" ")[0]} <strong>{state.other.formatLabel}</strong>.{" "}
                 <Link href={isQrFormat(state.other.format) ? "/qr-decoder/" : "/barcode-decoder/"} className="font-semibold underline underline-offset-2">
                   Open the {isQrFormat(state.other.format) ? "QR Decoder" : "Barcode Decoder"}
                 </Link>{" "}

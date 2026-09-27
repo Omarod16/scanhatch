@@ -66,7 +66,7 @@ export default function BarcodeGeneratorPage() {
       </div>
 
       <div className="container-page">
-        <RelatedTools ids={["barcode-scanner", "barcode-decoder", "check-digit", "barcode-validator", "qr-generator", "bulk-barcode"]} />
+        <RelatedTools ids={["barcode-validator", "check-digit", "barcode-scanner", "ean-upc-validator", "itf-14-validator", "barcode-decoder"]} />
       </div>
     </>
   );

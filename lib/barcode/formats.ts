@@ -4,6 +4,7 @@
  * (like a calculated check digit) is reported back in `notes`.
  */
 import { gs1CheckDigit, upcABodyToUpcE, upcECheckDigit } from "./checkdigit";
+import { msiCheckDigits } from "./msi";
 
 export type BarcodeFormatId =
   | "code128" | "code39" | "code93" | "ean13" | "ean8" | "upca" | "upce"
@@ -290,6 +291,9 @@ export const BARCODE_FORMATS: BarcodeFormat[] = [
       if (!input) return empty();
       if (!/^\d+$/.test(input)) return fail("MSI can only contain digits (0–9).");
       if (input.length > 30) return fail("Keep MSI under 30 digits.");
+      if ((opts.msiCheck === "mod11" || opts.msiCheck === "mod1110") && msiCheckDigits(input, opts.msiCheck) === null) {
+        return fail("With Mod 11, this number would need a check value of 10, which MSI can't store as a single digit. Choose Mod 10, or change the number.");
+      }
       const label: Record<MsiCheck, string> = { none: "", mod10: "Mod 10", mod1010: "two Mod 10", mod11: "Mod 11", mod1110: "Mod 11 + Mod 10" };
       return {
         ok: true, encode: input, value: input,

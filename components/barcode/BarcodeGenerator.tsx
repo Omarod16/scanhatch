@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { ColorField, Range, Segmented, SelectField, Toggle } from "@/components/ui/controls";
 import { Tabs } from "@/components/ui/Tabs";
@@ -63,9 +64,19 @@ export function BarcodeGenerator() {
   }, []);
 
   useEffect(() => {
+    // Deep links: #ean13 selects a format; #ean13:4006381333931 also fills in the data.
     const read = () => {
-      const key = window.location.hash.slice(1);
-      if (isBarcodeFormatId(key)) { chooseFormat(key, false); setTab("content"); }
+      const hash = window.location.hash.slice(1);
+      const i = hash.indexOf(":");
+      const key = i >= 0 ? hash.slice(0, i) : hash;
+      if (!isBarcodeFormatId(key)) return;
+      chooseFormat(key, false);
+      setTab("content");
+      if (i >= 0) {
+        let value = "";
+        try { value = decodeURIComponent(hash.slice(i + 1)); } catch { /* malformed link: ignore data */ }
+        if (value) setInputs((p) => ({ ...p, [key]: value.slice(0, 200) }));
+      }
     };
     read();
     window.addEventListener("hashchange", read);
@@ -158,6 +169,16 @@ export function BarcodeGenerator() {
 
       <p className="text-sm text-mist">
         <a href={`#guide-${formatId}`} className="text-cyan underline underline-offset-2">Read the {format.name} guide</a> for data rules, common mistakes and printing advice.
+      </p>
+      <p className="text-sm text-mist">
+        Checking an existing number?{" "}
+        {["ean13", "ean8", "upca", "upce"].includes(formatId) ? (
+          <><Link href={`/ean-upc-validator/#${formatId}`} className="text-cyan underline underline-offset-2">EAN/UPC Validator</Link> · <Link href={`/check-digit-calculator/#${formatId === "upce" ? "upca" : formatId}`} className="text-cyan underline underline-offset-2">Check Digit Calculator</Link></>
+        ) : formatId === "itf14" ? (
+          <><Link href="/itf-14-validator/" className="text-cyan underline underline-offset-2">ITF-14 Validator</Link> · <Link href="/check-digit-calculator/#itf14" className="text-cyan underline underline-offset-2">Check Digit Calculator</Link></>
+        ) : (
+          <Link href={`/barcode-validator/#${["datamatrix", "pdf417", "aztec"].includes(formatId) ? "" : formatId}`} className="text-cyan underline underline-offset-2">Barcode Validator</Link>
+        )}
       </p>
     </div>
   );

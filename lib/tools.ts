@@ -37,15 +37,17 @@ export const TOOLS: Tool[] = [
   { id: "qr-event", name: "Event QR Generator", summary: "Add an event with time and location to a calendar.", href: "/qr-code-generator/#event", category: "qr", status: "live" },
   { id: "qr-scanner", name: "QR Scanner", summary: "Scan QR codes with your camera.", href: "/qr-scanner/", category: "scanner", status: "live", indexable: true },
   { id: "qr-decoder", name: "QR Decoder", summary: "Read a QR code from an image file.", href: "/qr-decoder/", category: "qr", status: "live", indexable: true },
-  { id: "qr-validator", name: "QR Validator", summary: "Check that a QR image decodes and see what it contains.", href: "/qr-validator/", category: "qr", status: "soon" },
+  { id: "qr-validator", name: "QR Validator", summary: "Check that a QR image decodes and see what it contains.", href: "/qr-validator/", category: "qr", status: "live", indexable: true },
   { id: "qr-size", name: "QR Size Calculator", summary: "Work out how big to print a QR code for a scanning distance.", href: "/qr-size-calculator/", category: "utility", status: "soon" },
 
   // Barcode tools
   { id: "barcode-generator", name: "Barcode Generator", summary: "Create EAN-13, UPC, Code 128, ITF-14, Data Matrix and other barcodes.", href: "/barcode-generator/", category: "barcode", status: "live", indexable: true },
   { id: "barcode-scanner", name: "Barcode Scanner", summary: "Scan 1D and 2D barcodes with your camera.", href: "/barcode-scanner/", category: "scanner", status: "live", indexable: true },
   { id: "barcode-decoder", name: "Barcode Decoder", summary: "Read a barcode from an image file.", href: "/barcode-decoder/", category: "barcode", status: "live", indexable: true },
-  { id: "barcode-validator", name: "Barcode Validator", summary: "Check a barcode number's structure and check digit.", href: "/barcode-validator/", category: "barcode", status: "soon" },
-  { id: "check-digit", name: "Check Digit Calculator", summary: "Calculate EAN, UPC and ITF-14 check digits step by step.", href: "/check-digit-calculator/", category: "barcode", status: "soon" },
+  { id: "barcode-validator", name: "Barcode Validator", summary: "Check a barcode number's structure and check digit.", href: "/barcode-validator/", category: "barcode", status: "live", indexable: true },
+  { id: "check-digit", name: "Check Digit Calculator", summary: "Calculate EAN, UPC and ITF-14 check digits step by step.", href: "/check-digit-calculator/", category: "barcode", status: "live", indexable: true },
+  { id: "ean-upc-validator", name: "EAN/UPC Validator", summary: "Validate EAN-13, EAN-8, UPC-A and UPC-E numbers and convert UPC-E.", href: "/ean-upc-validator/", category: "barcode", status: "live", indexable: true },
+  { id: "itf-14-validator", name: "ITF-14 Validator", summary: "Check a GTIN-14 carton number or calculate its check digit.", href: "/itf-14-validator/", category: "barcode", status: "live", indexable: true },
 
   // Scanners & utilities
   { id: "scanner", name: "Universal Scanner", summary: "Scan QR codes and barcodes from one screen.", href: "/scanner/", category: "scanner", status: "live", indexable: true },

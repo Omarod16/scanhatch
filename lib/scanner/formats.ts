@@ -64,3 +64,6 @@ export function normaliseResult(format: string, text: string): NormalisedResult 
   }
   return { format, formatLabel, value, notes };
 }
+
+/** "a" or "an" for a format label, by how it's spoken (an EAN-13, a UPC-A, an ITF). */
+export const withArticle = (label: string) => `${/^(EAN|ITF|Aztec|MSI|rMQR|RSS)/.test(label) ? "an" : "a"} ${label}`;

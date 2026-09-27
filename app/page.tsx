@@ -39,6 +39,14 @@ export default function Home() {
             {" / "}
             <Link href="/barcode-decoder/" className="font-semibold text-cyan hover:underline">Decode Barcode</Link>
           </p>
+          <p className="mt-2 text-sm text-mist">
+            Check a code:{" "}
+            <Link href="/barcode-validator/" className="font-semibold text-cyan hover:underline">Barcode Validator</Link>
+            {" · "}
+            <Link href="/qr-validator/" className="font-semibold text-cyan hover:underline">QR Validator</Link>
+            {" · "}
+            <Link href="/check-digit-calculator/" className="font-semibold text-cyan hover:underline">Check Digit Calculator</Link>
+          </p>
         </div>
       </section>
 
