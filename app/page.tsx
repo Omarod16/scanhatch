@@ -6,15 +6,6 @@ import { absoluteUrl } from "@/lib/seo";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { CATEGORY_LABELS, toolsIn, type ToolCategory } from "@/lib/tools";
 
-function SoonButton({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="btn cursor-not-allowed border border-dashed border-line-2 text-mist" aria-disabled="true">
-      {children}
-      <span className="rounded-full bg-panel-2 px-2 py-0.5 text-xs font-medium">Coming soon</span>
-    </span>
-  );
-}
-
 const ORDER: ToolCategory[] = ["qr", "barcode", "scanner", "utility"];
 
 export default function Home() {
@@ -40,10 +31,13 @@ export default function Home() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
             <Link href="/barcode-generator/" className="btn-secondary">Create Barcode</Link>
-            <SoonButton>Scan Code</SoonButton>
+            <Link href="/scanner/" className="btn-secondary">Scan Code</Link>
           </div>
           <p className="mt-4 text-sm text-mist">
-            Decode QR / Barcode from an image: <span className="text-fog">coming soon</span>
+            Have a picture of a code?{" "}
+            <Link href="/qr-decoder/" className="font-semibold text-cyan hover:underline">Decode QR</Link>
+            {" / "}
+            <Link href="/barcode-decoder/" className="font-semibold text-cyan hover:underline">Decode Barcode</Link>
           </p>
         </div>
       </section>
