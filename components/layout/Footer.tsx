@@ -34,7 +34,6 @@ function FooterItem({ item }: { item: Item }) {
 }
 
 export function Footer() {
-  const legal = [PAGES.privacy, PAGES.terms, PAGES.cookies, PAGES.contact].filter((p) => p.status === "live");
   return (
     <footer className="mt-24 border-t border-line bg-ink-2">
       <div className="container-page py-14">
@@ -63,15 +62,6 @@ export function Footer() {
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 text-sm text-mist sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} ScanHatch · QR &amp; Barcode Tools</p>
-          {legal.length > 0 && (
-            <ul className="flex gap-5">
-              {legal.map((p) => (
-                <li key={p.href}>
-                  <Link href={p.href} className="hover:text-white">{p.name}</Link>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
         <p className="mt-4 text-xs text-mist/60">Greyed-out items are in development and not yet available.</p>
       </div>

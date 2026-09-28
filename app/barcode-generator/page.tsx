@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
@@ -37,6 +38,7 @@ export default function BarcodeGeneratorPage() {
 
       <div className="container-page mt-6">
         <BarcodeGenerator />
+        <PrivacyNotice variant="generator" className="mt-8" />
       </div>
 
       <div className="container-page mt-20 max-w-3xl">

@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { QrGenerator } from "@/components/qr/QrGenerator";
@@ -37,6 +38,7 @@ export default function QrCodeGeneratorPage() {
 
       <div className="container-page mt-6">
         <QrGenerator />
+        <PrivacyNotice variant="generator" className="mt-8" />
       </div>
 
       <article className="container-page prose-page mt-20 max-w-3xl">

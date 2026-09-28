@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { Tabs } from "@/components/ui/Tabs";
-import { PRIVACY_SCAN } from "@/lib/scanner/privacy";
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import type { NormalisedResult, ScanMode } from "@/lib/scanner/formats";
 import { useScanHistory } from "@/lib/scanner/history";
 import { CameraScanner } from "./CameraScanner";
@@ -24,7 +24,7 @@ export function ScannerTool({ mode }: { mode: ScanMode }) {
 
   return (
     <div>
-      <p className="mb-5 rounded-lg border border-line bg-ink-2 px-4 py-3 text-sm text-fog">{PRIVACY_SCAN}</p>
+      <PrivacyNotice variant="scanner" className="mb-5" />
       <Tabs
         label="Scan method"
         active={tab}
@@ -54,7 +54,7 @@ export function DecoderTool({ mode }: { mode: ScanMode }) {
   const onImage = useCallback((r: NormalisedResult) => history.add({ format: r.formatLabel, value: r.value, source: "image" }), [history]);
   return (
     <div>
-      <p className="mb-5 rounded-lg border border-line bg-ink-2 px-4 py-3 text-sm text-fog">{PRIVACY_SCAN}</p>
+      <PrivacyNotice variant="scanner" className="mb-5" />
       <ImageDecoder mode={mode} onDecoded={onImage} />
       <ScanHistory entries={history.entries} onRemove={history.remove} onClear={history.clear} />
     </div>

@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -24,7 +25,7 @@ export default function CheckDigitPage() {
       <ToolPageHeader name="Check Digit Calculator" title="Check Digit Calculator">
         <p>Enter the digits of an EAN, UPC or ITF-14 number without the last digit, and see its check digit and how it was worked out.</p>
       </ToolPageHeader>
-      <div className="container-page mt-6 max-w-3xl"><CheckDigitCalculator /></div>
+      <div className="container-page mt-6 max-w-3xl"><CheckDigitCalculator /><PrivacyNotice variant="validator" className="mt-8" /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>How the GS1 check digit works</h2>
         <p>

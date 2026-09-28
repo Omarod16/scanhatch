@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -22,7 +23,7 @@ export default function EanUpcValidatorPage() {
           <p className="mb-4 text-sm text-fog">Enter a UPC-E to expand it, or a UPC-A to see whether it can be shortened.</p>
           <UpcConverter />
         </section>
-      </div>
+      <PrivacyNotice variant="validator" className="mt-8" /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>How EAN and UPC numbers relate</h2>
         <p>

@@ -92,8 +92,8 @@ export const PAGES = {
   tools: { name: "All tools", href: "/tools/", status: "live" as ToolStatus },
   blog: { name: "Blog", href: "/blog/", status: "live" as ToolStatus },
   about: { name: "About", href: "/about/", status: "soon" as ToolStatus },
-  contact: { name: "Contact", href: "/contact/", status: "soon" as ToolStatus },
-  privacy: { name: "Privacy", href: "/privacy-policy/", status: "soon" as ToolStatus },
-  terms: { name: "Terms", href: "/terms/", status: "soon" as ToolStatus },
-  cookies: { name: "Cookies", href: "/cookie-policy/", status: "soon" as ToolStatus },
+  contact: { name: "Contact", href: "/contact/", status: "live" as ToolStatus },
+  privacy: { name: "Privacy Policy", href: "/privacy-policy/", status: "live" as ToolStatus },
+  terms: { name: "Terms", href: "/terms/", status: "live" as ToolStatus },
+  cookies: { name: "Cookie Policy", href: "/cookie-policy/", status: "live" as ToolStatus },
 };

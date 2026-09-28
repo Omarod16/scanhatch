@@ -8,7 +8,7 @@ import { Tabs } from "@/components/ui/Tabs";
 import { track } from "@/lib/analytics";
 import { QR_FORMATS, formatsFor, normaliseResult, withArticle, type NormalisedResult } from "@/lib/scanner/formats";
 import { IMAGE_ACCEPT, ImageInputError, readImageFile, toImageData } from "@/lib/scanner/image";
-import { PRIVACY_SCAN } from "@/lib/scanner/privacy";
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { decodeImageData } from "@/lib/scanner/zxing";
 import { validateQrContent, type ContentCheck, type ContentValidation } from "@/lib/validate/qr-content";
 import { assessQrImage, type Readability } from "@/lib/validate/qr-image";
@@ -188,7 +188,7 @@ export function QrValidator() {
   const [tab, setTab] = useState("upload");
   return (
     <div>
-      <p className="mb-5 rounded-lg border border-line bg-ink-2 px-4 py-3 text-sm text-fog">{PRIVACY_SCAN}</p>
+      <PrivacyNotice variant="validator" className="mb-5" />
       <Tabs
         label="How to check the QR code"
         active={tab}

@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -26,7 +27,7 @@ export default function BarcodeValidatorPage() {
       <ToolPageHeader name="Barcode Validator" title="Barcode Validator">
         <p>Choose a format and enter the number or text. You&apos;ll see whether it&apos;s valid and exactly which rule passes or fails.</p>
       </ToolPageHeader>
-      <div className="container-page mt-6 max-w-3xl"><BarcodeValidator tool="barcode-validator" formats={["ean13", "ean8", "upca", "upce", "itf14", "itf", "code128", "code39", "code93", "codabar", "msi", "pharmacode"]} /></div>
+      <div className="container-page mt-6 max-w-3xl"><BarcodeValidator tool="barcode-validator" formats={["ean13", "ean8", "upca", "upce", "itf14", "itf", "code128", "code39", "code93", "codabar", "msi", "pharmacode"]} /><PrivacyNotice variant="validator" className="mt-8" /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>What each format is checked for</h2>
         <p>The validator only applies rules the format itself defines. Formats without a check digit are checked for structure alone.</p>

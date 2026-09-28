@@ -9,6 +9,8 @@ import { barcodeLandingFor, landingPath } from "@/lib/landing";
 import type { Landing } from "@/lib/landing/types";
 import { breadcrumbJsonLd, webAppJsonLd } from "@/lib/seo";
 import { SeoToolTracker } from "./SeoToolTracker";
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 const PARENT = {
   qr: { name: "QR Code Generator", path: "/qr-code-generator/" },
@@ -50,11 +52,15 @@ export function LandingLayout({ page, tool }: { page: Landing; tool: ReactNode }
         <p className="mt-3 max-w-2xl text-fog">{page.intro}</p>
       </div>
 
-      <div className="container-page mt-6">{tool}</div>
+      <div className="container-page mt-6">
+        {tool}
+        <PrivacyNotice variant="generator" className="mt-8" />
+      </div>
 
       <article className="container-page prose-page mt-20 max-w-3xl">
         <h2>How to use it</h2>
         <ol>{page.howTo.map((s) => <li key={s}>{s}</li>)}</ol>
+        <AdSlot id="landing-content" />
         {page.sections.map((sec) => (
           <section key={sec.heading}>
             <h2>{sec.heading}</h2>

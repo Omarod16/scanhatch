@@ -16,6 +16,7 @@ import { downloadBlob } from "@/lib/downloads/export";
 import { LOGO_ACCEPT, normaliseLogo } from "@/lib/qr/logo";
 import { buildMatrix, type Ecc } from "@/lib/qr/matrix";
 import { checkReadability } from "@/lib/qr/warnings";
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { BatchSummary } from "./BatchSummary";
 import { CsvUpload } from "./CsvUpload";
 import { ProgressPanel } from "./ProgressPanel";
@@ -114,6 +115,7 @@ export function BulkQrGenerator() {
           <p className="mt-2 text-sm text-mist">Maximum {MAX_BATCH_ROWS} codes per batch, CSV up to 1 MB.</p>
         </>}
       />
+      <PrivacyNotice variant="bulk" className="mt-4" />
       {csv.error && <p className="mt-4 rounded-lg border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-red-100" role="alert">{csv.error}</p>}
       {check?.fileError && <p className="mt-4 rounded-lg border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-red-100" role="alert">{check.fileError}</p>}
 

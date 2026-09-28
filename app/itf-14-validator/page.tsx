@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -19,7 +20,7 @@ export default function Itf14ValidatorPage() {
       <ToolPageHeader name="ITF-14 Validator" title="ITF-14 Validator">
         <p>Enter 13 digits to calculate the check digit, or all 14 to check a carton number you already have.</p>
       </ToolPageHeader>
-      <div className="container-page mt-6 max-w-3xl"><BarcodeValidator tool="itf-14-validator" formats={["itf14"]} calculateMissingCheck /></div>
+      <div className="container-page mt-6 max-w-3xl"><BarcodeValidator tool="itf-14-validator" formats={["itf14"]} calculateMissingCheck /><PrivacyNotice variant="validator" className="mt-8" /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>What an ITF-14 number contains</h2>
         <p>ITF-14 barcodes carry a GTIN-14, which identifies a case or carton of products rather than a single item. The 14 digits are:</p>

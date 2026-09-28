@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ArticleBody } from "@/components/blog/ArticleBody";
 import { ArticleCard } from "@/components/blog/ArticleCard";
@@ -63,6 +64,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </nav>
           )}
           <ArticleBody blocks={a.body} />
+          <AdSlot id="article-mid" />
           {a.faq && a.faq.length > 0 && (
             <section aria-labelledby="faq">
               <h2 id="faq">Frequently asked questions</h2>
@@ -90,6 +92,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </ul>
           </section>
         )}
+        <div className="mt-16"><AdSlot id="article-end" /></div>
       </div>
     </>
   );
