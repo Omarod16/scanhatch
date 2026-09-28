@@ -50,3 +50,21 @@ export function webAppJsonLd(opts: { name: string; description: string; path: st
     isAccessibleForFree: true,
   };
 }
+
+/** Article structured data. Author and publisher are the site itself; no individual author is claimed. */
+export function articleJsonLd(opts: { headline: string; description: string; path: string; datePublished: string; dateModified: string }) {
+  const url = absoluteUrl(opts.path);
+  const org = { "@type": "Organization", name: SITE_NAME, url: SITE_URL };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.headline,
+    description: opts.description,
+    url,
+    mainEntityOfPage: url,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    author: org,
+    publisher: org,
+  };
+}

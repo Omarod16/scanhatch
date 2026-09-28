@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { FORMAT_GUIDES } from "@/lib/barcode/guide";
 import { QR_LANDINGS } from "@/lib/landing/qr";
+import { articlePath, articlesLinkingTo } from "@/lib/blog";
 import { barcodeLandingFor, landingPath } from "@/lib/landing";
 import type { Landing } from "@/lib/landing/types";
 import { breadcrumbJsonLd, webAppJsonLd } from "@/lib/seo";
@@ -24,6 +25,7 @@ function siblings(page: Landing) {
 export function LandingLayout({ page, tool }: { page: Landing; tool: ReactNode }) {
   const parent = PARENT[page.kind];
   const sib = siblings(page);
+  const reading = articlesLinkingTo(landingPath(page.slug)).slice(0, 3);
   const path = landingPath(page.slug);
   return (
     <>
@@ -75,6 +77,12 @@ export function LandingLayout({ page, tool }: { page: Landing; tool: ReactNode }
           <section aria-labelledby="siblings">
             <h2 id="siblings">{sib.label}</h2>
             <ul>{sib.items.map((l) => <li key={l.slug}><Link href={landingPath(l.slug)}>{l.name}</Link></li>)}</ul>
+          </section>
+        )}
+        {reading.length > 0 && (
+          <section aria-labelledby="reading">
+            <h2 id="reading">Further reading</h2>
+            <ul>{reading.map((a) => <li key={a.slug}><Link href={articlePath(a.slug)}>{a.title}</Link></li>)}</ul>
           </section>
         )}
         <p>

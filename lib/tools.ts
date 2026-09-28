@@ -90,7 +90,7 @@ export const toolById = (id: string) => {
 /** Other site pages (non-tools). Same live/soon rule applies. */
 export const PAGES = {
   tools: { name: "All tools", href: "/tools/", status: "live" as ToolStatus },
-  blog: { name: "Blog", href: "/blog/", status: "soon" as ToolStatus },
+  blog: { name: "Blog", href: "/blog/", status: "live" as ToolStatus },
   about: { name: "About", href: "/about/", status: "soon" as ToolStatus },
   contact: { name: "Contact", href: "/contact/", status: "soon" as ToolStatus },
   privacy: { name: "Privacy", href: "/privacy-policy/", status: "soon" as ToolStatus },
