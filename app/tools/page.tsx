@@ -9,7 +9,7 @@ export const metadata = pageMetadata({
   path: "/tools/",
 });
 
-const ORDER: ToolCategory[] = ["qr", "barcode", "scanner", "utility"];
+const ORDER: ToolCategory[] = ["qr", "barcode", "format", "scanner", "utility"];
 
 export default function ToolsPage() {
   return (

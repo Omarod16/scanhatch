@@ -2,6 +2,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { QrGenerator } from "@/components/qr/QrGenerator";
 import { RelatedTools } from "@/components/ToolLinks";
+import { QR_LANDINGS } from "@/lib/landing/qr";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 import { PRIVACY_PROMISE } from "@/lib/site";
 
@@ -47,6 +48,11 @@ export default function QrCodeGeneratorPage() {
           <li><strong>Download and test.</strong> Scan the code with at least one phone before you print or publish it.</li>
         </ol>
 
+        <h2>Guides for specific QR code types</h2>
+        <p>Each of these pages opens the generator with the right type selected, and explains what that kind of code contains and how to use it well:</p>
+        <ul>
+          {QR_LANDINGS.map((l) => <li key={l.slug}><Link href={`/${l.slug}/`}>{l.name}</Link></li>)}
+        </ul>
         <h2>Which file format should I download?</h2>
         <ul>
           <li><strong>SVG</strong> is a vector file. It stays sharp at any size and is the best choice for print designers and signage.</li>

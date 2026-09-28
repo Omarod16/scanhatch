@@ -31,12 +31,16 @@ const styleFor = (f: BarcodeFormat, prev: BarcodeStyle): BarcodeStyle => ({
 
 const GUARDS: { value: CodabarGuard; label: string }[] = ["A", "B", "C", "D"].map((g) => ({ value: g as CodabarGuard, label: g }));
 
-export function BarcodeGenerator() {
+/**
+ * `initialFormat` preselects a format (used by format landing pages).
+ * `guidePage` is where the per-format guide lives; "" means this page.
+ */
+export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: { initialFormat?: BarcodeFormatId; guidePage?: string }) {
   const dataId = useId();
-  const [formatId, setFormatId] = useState<BarcodeFormatId>("code128");
+  const [formatId, setFormatId] = useState<BarcodeFormatId>(initialFormat);
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [opts, setOpts] = useState<FormatOptions>(DEFAULT_FORMAT_OPTIONS);
-  const [style, setStyle] = useState<BarcodeStyle>(() => styleFor(barcodeFormat("code128")!, DEFAULT_BARCODE_STYLE));
+  const [style, setStyle] = useState<BarcodeStyle>(() => styleFor(barcodeFormat(initialFormat)!, DEFAULT_BARCODE_STYLE));
   const [dpi, setDpi] = useState(300);
   const [page, setPage] = useState<PageSize | "fit">("fit");
   const [tab, setTab] = useState("content");
@@ -168,7 +172,7 @@ export function BarcodeGenerator() {
       )}
 
       <p className="text-sm text-mist">
-        <a href={`#guide-${formatId}`} className="text-cyan underline underline-offset-2">Read the {format.name} guide</a> for data rules, common mistakes and printing advice.
+        <a href={`${guidePage}#guide-${formatId}`} className="text-cyan underline underline-offset-2">Read the {format.name} guide</a> for data rules, common mistakes and printing advice.
       </p>
       <p className="text-sm text-mist">
         Checking an existing number?{" "}

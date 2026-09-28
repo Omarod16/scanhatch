@@ -20,6 +20,7 @@ export type AnalyticsEvent =
   | { name: "scanner_used"; props: { source: "camera" | "image" } }
   | { name: "decoder_used"; props: { success: boolean } }
   | { name: "tool_selected"; props: { tool: string } }
+  | { name: "seo_tool_opened"; props: { page: string; kind: "qr" | "barcode" } }
   | { name: "validator_used"; props: { tool: string; format: string; valid: boolean } }
   | { name: "bulk_qr_started"; props: { count: number } }
   | { name: "bulk_qr_completed"; props: { count: number } }

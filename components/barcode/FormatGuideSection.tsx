@@ -1,5 +1,6 @@
 import { BARCODE_FORMATS, barcodeFormat } from "@/lib/barcode/formats";
 import { FORMAT_GUIDES } from "@/lib/barcode/guide";
+import { barcodeLandingFor } from "@/lib/landing";
 
 /** Server-rendered guide for every format (unique content per format). */
 export function FormatGuideSection() {
@@ -18,6 +19,9 @@ export function FormatGuideSection() {
             <p className="mb-2"><strong>Common mistakes:</strong></p>
             <ul>{g.mistakes.map((m) => <li key={m}>{m}</li>)}</ul>
             <p><strong>Printing and scanning:</strong> {g.printing}</p>
+            {barcodeLandingFor(f.id) && (
+              <p><a href={`/${barcodeLandingFor(f.id)!.slug}/`}>More about {f.name}, with the generator set up for it</a></p>
+            )}
             <p>
               <strong>Related formats:</strong>{" "}
               {g.related.map((id, i) => (
