@@ -1,5 +1,7 @@
 "use client";
 
+import { userMessage } from "@/lib/errors";
+
 import { useId, useRef, useState } from "react";
 import { ColorField, Range, Toggle } from "@/components/ui/controls";
 import { LOGO_ACCEPT, normaliseLogo } from "@/lib/qr/logo";
@@ -33,7 +35,7 @@ export function LogoPanel({ style, set }: { style: QrStyle; set: Set }) {
       if (style.ecc !== "H") set("ecc", "H");
       setStatus({ kind: "ok", msg: "Logo added. Error correction was set to High so the code stays readable." });
     } catch (e) {
-      setStatus({ kind: "error", msg: e instanceof Error ? e.message : "The logo couldn't be added." });
+      setStatus({ kind: "error", msg: userMessage(e, "The logo couldn't be added. Try a different image.") });
     } finally {
       if (inputRef.current) inputRef.current.value = "";
     }

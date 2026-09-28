@@ -20,7 +20,7 @@ const COLUMNS: { title: string; items: Item[] }[] = [
 function FooterItem({ item }: { item: Item }) {
   if (item.status === "live") {
     return (
-      <Link href={item.href} className="text-sm text-mist hover:text-white">
+      <Link prefetch={false} href={item.href} className="text-sm text-mist hover:text-white">
         {item.name}
       </Link>
     );
@@ -39,7 +39,7 @@ export function Footer() {
       <div className="container-page py-14">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_3fr]">
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5 font-extrabold text-white">
+            <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5 font-extrabold text-white">
               <LogoMark className="h-7 w-7" />
               ScanHatch
             </Link>
@@ -50,7 +50,7 @@ export function Footer() {
               <div key={col.title}>
                 <h2 className="mb-3 text-sm font-bold text-white">{col.title}</h2>
                 <ul className="space-y-2.5">
-                  {col.items.map((item) => (
+                  {col.items.filter((item) => item.status === "live").map((item) => (
                     <li key={item.href}>
                       <FooterItem item={item} />
                     </li>
@@ -63,7 +63,6 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-3 border-t border-line pt-6 text-sm text-mist sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} ScanHatch · QR &amp; Barcode Tools</p>
         </div>
-        <p className="mt-4 text-xs text-mist/60">Greyed-out items are in development and not yet available.</p>
       </div>
     </footer>
   );

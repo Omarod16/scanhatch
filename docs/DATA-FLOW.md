@@ -17,7 +17,8 @@ Keep this file up to date whenever a feature touches storage, the network or thi
 | localStorage / IndexedDB | Not used |
 | sessionStorage | `scanhatch:scan-history`, written only by the Scanner and Decoder tools |
 | Analytics | `lib/analytics.ts`: no provider configured, sends nothing. Props are ids, counts and booleans only; `safeProps` drops anything else; sending is gated on analytics consent |
-| Third parties | Cloudflare (hosting and CDN) receives normal HTTP requests (IP address, user agent, URL). Fonts and the ZXing wasm are self-hosted |
+| Third parties | Cloudflare (hosting and CDN) receives normal HTTP requests (IP address, user agent, URL). Fonts (preloaded via next/font) and the ZXing wasm are self-hosted |
+| Enforcement | `public/_headers` sets a Content-Security-Policy with `connect-src 'self'` and `img-src 'self' data: blob:`, so page scripts can't send data to other hosts, plus nosniff, Referrer-Policy, Permissions-Policy (camera only for this site) and frame blocking |
 | Ads | None. `AdSlot` mode is `disabled` |
 
 ## Per tool

@@ -1,9 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/manrope";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+
+/**
+ * Manrope (SIL Open Font License), latin subset, self-hosted and preloaded.
+ * next/font adds a metrics-matched fallback so text doesn't reflow when the
+ * web font arrives (this was the main source of layout shift).
+ */
+const manrope = localFont({
+  src: "../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
+  weight: "200 800",
+  style: "normal",
+  display: "swap",
+  variable: "--font-manrope",
+  adjustFontFallback: "Arial",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -29,7 +43,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={manrope.variable}>
       <body className="flex min-h-dvh flex-col font-sans">
         <Header />
         <main id="main" className="flex-1">

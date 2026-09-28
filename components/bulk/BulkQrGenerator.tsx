@@ -1,5 +1,7 @@
 "use client";
 
+import { userMessage } from "@/lib/errors";
+
 import { useCallback, useMemo, useState } from "react";
 import { ColorField, Range, Segmented, SelectField } from "@/components/ui/controls";
 import { WarningList } from "@/components/ui/WarningList";
@@ -71,7 +73,7 @@ export function BulkQrGenerator() {
       const l = await normaliseLogo(file);
       set("logo", { ...l, size: 0.22 });
     } catch (e) {
-      setLogoError(e instanceof Error ? e.message : "This logo couldn't be used.");
+      setLogoError(userMessage(e, "This logo couldn't be used. Try a different image."));
     }
   };
 

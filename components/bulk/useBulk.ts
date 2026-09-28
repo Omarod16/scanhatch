@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { MAX_BATCH_ROWS, MAX_CSV_BYTES } from "@/lib/bulk/limits";
 import { BatchCancelled, runBatch, type BatchFile } from "@/lib/bulk/run";
 import { readCsvFile, type CsvTable } from "@/lib/csv/read";
+import { isLoadError, LOAD_FAILED, userMessage } from "@/lib/errors";
 import type { BatchPhase } from "./ProgressPanel";
 
 /** Holds the parsed CSV and in-page fixes. Nothing leaves the browser. */
@@ -89,7 +90,7 @@ export function useBatchRunner() {
       opts.onDone?.(out.files);
     } catch (e) {
       if (e instanceof BatchCancelled) { setPhase("cancelled"); setMessage("Generation cancelled. No ZIP file was created."); }
-      else { setPhase("error"); setMessage(e instanceof Error && e.message ? `Generation failed: ${e.message}` : "Generation failed. Try a smaller batch or reload the page."); }
+      else { setPhase("error"); setMessage(isLoadError(e) ? `Generation failed. ${LOAD_FAILED}` : `Generation failed: ${userMessage(e, "try a smaller batch or reload the page.")}`); }
     } finally {
       if (ctrl.current === c) ctrl.current = null;
     }

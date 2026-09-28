@@ -49,14 +49,19 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
   const [touched, setTouched] = useState(false);
   const tracked = useRef(new Set<string>());
 
-  // bwip-js is only downloaded on this page.
+  // bwip-js (~170 KB compressed) is downloaded only when it's needed: on the user's
+  // first interaction with the generator, or as soon as there's data to draw
+  // (e.g. a #format:value link). This keeps the page's initial load light.
+  const [wantEngine, setWantEngine] = useState(false);
+  const requestEngine = useCallback(() => setWantEngine(true), []);
   useEffect(() => {
+    if (!wantEngine || bwip) return;
     let alive = true;
     import("bwip-js/browser")
       .then((m) => alive && setBwip({ toSVG: (o) => m.toSVG(o as never) }))
       .catch(() => alive && setLoadError("The barcode engine couldn't load. Check your connection and reload the page."));
     return () => { alive = false; };
-  }, []);
+  }, [wantEngine, bwip]);
 
   const chooseFormat = useCallback((id: BarcodeFormatId, updateHash = true) => {
     const f = barcodeFormat(id)!;
@@ -88,6 +93,8 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
   }, [chooseFormat]);
 
   const format = barcodeFormat(formatId)!;
+  const hasInput = (inputs[formatId] ?? "") !== "";
+  useEffect(() => { if (hasInput) setWantEngine(true); }, [hasInput]);
   const input = inputs[formatId] ?? "";
   const v = useMemo(() => format.validate(input, opts), [format, input, opts]);
 
@@ -256,7 +263,7 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
   const infoNotes = v.ok ? v.notes : [];
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_440px]">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_440px]" onPointerDownCapture={requestEngine} onKeyDownCapture={requestEngine} onFocusCapture={requestEngine}>
       <div className="min-w-0">
         <Tabs
           label="Barcode settings"
@@ -286,7 +293,7 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
               />
             ) : (
               <p className={`max-w-xs text-center text-sm ${out.error || loadError ? "font-medium text-danger" : "text-mist"}`} role={out.error || loadError ? "alert" : undefined}>
-                {loadError ?? out.error ?? (!bwip ? "Loading the barcode engine…" : showError ? "Fix the data to see your barcode." : "Enter barcode data to see a preview.")}
+                {loadError ?? out.error ?? (!bwip && v.ok ? "Loading the barcode engine…" : showError ? "Fix the data to see your barcode." : "Enter barcode data to see a preview.")}
               </p>
             )}
           </div>

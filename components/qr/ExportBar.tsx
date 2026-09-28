@@ -1,5 +1,7 @@
 "use client";
 
+import { userMessage } from "@/lib/errors";
+
 import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
 import {
@@ -31,7 +33,7 @@ export function ExportBar({ svg, style, output, filename }: { svg: string | null
       if (text) setMsg({ kind: "ok", text });
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") return;
-      setMsg({ kind: "error", text: e instanceof Error ? e.message : "Something went wrong. Please try again." });
+      setMsg({ kind: "error", text: userMessage(e, "The export didn't work. Try again, or choose a different format.") });
     } finally {
       setBusy(null);
     }

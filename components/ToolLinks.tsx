@@ -13,7 +13,7 @@ export function ToolItem({ tool }: { tool: Tool }) {
     </>
   );
   return live ? (
-    <Link href={tool.href} className="block rounded-xl border border-line bg-ink-2 p-4 hover:border-cyan/50 hover:bg-panel">
+    <Link prefetch={false} href={tool.href} className="block rounded-xl border border-line bg-ink-2 p-4 hover:border-cyan/50 hover:bg-panel">
       {inner}
     </Link>
   ) : (

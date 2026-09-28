@@ -40,7 +40,7 @@ export function DecodeResult({ result, onAgain, againLabel }: { result: Normalis
   return (
     <section aria-label="Scan result" className="rounded-2xl border border-cyan/40 bg-ink-2 p-4 sm:p-6">
       <div className="flex flex-wrap items-center gap-2">
-        <h3 className="mr-auto text-base font-bold text-white">Code detected</h3>
+        <h2 className="mr-auto text-base font-bold text-white">Code detected</h2>
         <span className="rounded-full border border-line-2 px-2.5 py-0.5 text-xs font-semibold text-fog">{result.formatLabel}</span>
         {parsed && parsed.kind !== "text" && <span className="rounded-full bg-cyan/10 px-2.5 py-0.5 text-xs font-semibold text-cyan">{parsed.title}</span>}
       </div>

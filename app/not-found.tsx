@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Page not found",
+  description: "This page doesn't exist on ScanHatch.",
+};
 
 export default function NotFound() {
   return (

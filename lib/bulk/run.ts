@@ -1,3 +1,4 @@
+import { userMessage } from "@/lib/errors";
 /**
  * Runs a batch: produces one file per item, streams it into a ZIP, reports
  * progress, yields to keep the page responsive, and can be cancelled safely
@@ -42,7 +43,7 @@ export async function runBatch<T>(
         zip.add(f.name, f.data, f.compress);
         files++;
       } catch (e) {
-        failures.push({ index: i, error: e instanceof Error ? e.message : "Couldn't create this file." });
+        failures.push({ index: i, error: userMessage(e, "Couldn't create this file.") });
       }
       opts.onProgress(i + 1, items.length);
       if (performance.now() - lastYield > 24) { await yieldToBrowser(); lastYield = performance.now(); }

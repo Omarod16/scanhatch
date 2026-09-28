@@ -37,3 +37,14 @@ site's actual behaviour and need owner and legal review before launch.
 - `enabled` still renders nothing until: a publisher ID is supplied (`NEXT_PUBLIC_ADSENSE_CLIENT`, set in the build environment, never committed as a fake value), a CMP provider is registered, advertising consent is granted, and the AdSense loader is implemented and reviewed. The loader intentionally doesn't exist yet (`ADSENSE_LOADER_IMPLEMENTED = false`).
 - Reserved placements: `landing-content` (inside landing-page article content, below the tool and its privacy notice), `article-mid` (before an article's FAQ), and `article-end` (after an article, before related tools). None is inside or next to generator controls, Generate or Download buttons.
 - Activation is a controlled deployment step: get AdSense approval, configure the CMP, implement and review the loader, update the policies, then deploy.
+
+## Security headers must be updated before activation
+
+`public/_headers` sets a strict Content-Security-Policy (Phase 10). With it, the
+browser will BLOCK AdSense, Google's CMP and any analytics script, because
+`script-src`, `connect-src`, `img-src` and `frame-src` only allow ScanHatch's own
+origin. As part of the controlled activation step, add exactly the origins that
+Google's current AdSense and Privacy & Messaging documentation lists (scripts,
+frames, images and connections), test with the browser console open for
+"Refused to …" CSP errors, and keep everything else unchanged. Don't loosen the
+policy to `*` or remove it.

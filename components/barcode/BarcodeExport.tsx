@@ -1,5 +1,7 @@
 "use client";
 
+import { userMessage } from "@/lib/errors";
+
 import { useEffect, useState } from "react";
 import { track } from "@/lib/analytics";
 import { MAX_RASTER_PX } from "@/lib/barcode/warnings";
@@ -38,7 +40,7 @@ export function BarcodeExport({
       if (text) setMsg({ kind: "ok", text });
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") return;
-      setMsg({ kind: "error", text: e instanceof Error ? e.message : "Export failed. Try again, or use SVG." });
+      setMsg({ kind: "error", text: userMessage(e, "Export failed. Try again, or use SVG.") });
     } finally {
       setBusy(null);
     }

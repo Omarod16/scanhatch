@@ -27,7 +27,7 @@ export function Header() {
         Skip to content
       </a>
       <div className="container-page flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-2.5 font-extrabold tracking-tight text-white" onClick={() => setOpen(false)}>
+        <Link prefetch={false} href="/" className="flex items-center gap-2.5 font-extrabold tracking-tight text-white" onClick={() => setOpen(false)}>
           <LogoMark className="h-8 w-8" />
           <span className="text-lg">ScanHatch</span>
         </Link>
@@ -36,7 +36,7 @@ export function Header() {
           <ul className="flex items-center gap-1">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="rounded-lg px-3 py-2 text-sm font-medium text-fog hover:bg-panel hover:text-white">
+                <Link prefetch={false} href={l.href} className="rounded-lg px-3 py-2 text-sm font-medium text-fog hover:bg-panel hover:text-white">
                   {l.label}
                 </Link>
               </li>
@@ -45,7 +45,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/qr-code-generator/" className="btn-primary hidden min-h-10 sm:inline-flex">
+          <Link prefetch={false} href="/qr-code-generator/" className="btn-primary hidden min-h-10 sm:inline-flex">
             Create QR
           </Link>
           <button
@@ -69,13 +69,13 @@ export function Header() {
           <ul className="container-page flex flex-col py-3">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-fog hover:bg-panel hover:text-white">
+                <Link prefetch={false} href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-fog hover:bg-panel hover:text-white">
                   {l.label}
                 </Link>
               </li>
             ))}
             <li className="mt-2 px-3 pb-2">
-              <Link href="/qr-code-generator/" onClick={() => setOpen(false)} className="btn-primary w-full">
+              <Link prefetch={false} href="/qr-code-generator/" onClick={() => setOpen(false)} className="btn-primary w-full">
                 Create QR
               </Link>
             </li>

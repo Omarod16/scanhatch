@@ -1,4 +1,5 @@
 /** Safe image intake for the decoders: type, size and dimension checks before decoding. */
+import { fileHeaderDimensions } from "@/lib/images/dimensions";
 
 export const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 export const MAX_IMAGE_PIXELS = 40_000_000;
@@ -35,6 +36,12 @@ export async function readImageFile(file: File): Promise<ImageBitmap> {
   }
   const kind = await sniff(file);
   if (!kind) throw new ImageInputError("This file isn't a valid PNG, JPG or WEBP image, even though its name or type says it is.");
+
+  // Check declared dimensions BEFORE decoding, so tiny files declaring huge images are rejected cheaply.
+  const dims = await fileHeaderDimensions(file);
+  if (dims && dims.width * dims.height > MAX_IMAGE_PIXELS) {
+    throw new ImageInputError(`That image is ${dims.width} × ${dims.height} px, which is too large to process. Crop it to the code or use an image under 40 megapixels.`);
+  }
 
   let bitmap: ImageBitmap;
   try {

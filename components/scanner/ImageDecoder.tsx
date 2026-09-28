@@ -1,5 +1,7 @@
 "use client";
 
+import { isLoadError } from "@/lib/errors";
+
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
@@ -60,7 +62,7 @@ export function ImageDecoder({ mode, onDecoded }: { mode: ScanMode; onDecoded?: 
       setState({
         kind: "error",
         message: e instanceof ImageInputError ? e.message
-          : e instanceof Error && /wasm|WebAssembly|fetch|import/i.test(e.message) ? "The decoder couldn't load. Check your connection and reload the page."
+          : isLoadError(e) || (e instanceof Error && /wasm|WebAssembly/i.test(e.message)) ? "The decoder couldn't load. Check your connection and reload the page."
           : "This image couldn't be decoded. Try a different image.",
       });
     } finally {

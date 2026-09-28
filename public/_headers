@@ -1,0 +1,20 @@
+# Cloudflare static-asset headers (read from the build output; wrangler.jsonc is unchanged).
+
+# Content-hashed Next.js assets and the version-pinned ZXing decoder never change.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/zxing/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Security headers for every page and asset.
+# script-src needs 'unsafe-inline' for Next.js's inline bootstrap scripts and
+# 'wasm-unsafe-eval' to compile the ZXing WebAssembly decoder. connect-src/img-src
+# limited to 'self' means page scripts can't send data to other hosts.
+# Enabling AdSense or a CMP later REQUIRES updating this policy (docs/LEGAL-AND-ADS-SETUP.md).
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' blob:; worker-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=(), usb=()
+  X-Frame-Options: DENY

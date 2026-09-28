@@ -1,5 +1,7 @@
 "use client";
 
+import { isLoadError } from "@/lib/errors";
+
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import { formatsFor, normaliseResult, type NormalisedResult, type ScanMode } from "@/lib/scanner/formats";
@@ -59,6 +61,8 @@ export function CameraScanner({ mode, onResult }: { mode: ScanMode; onResult: (r
   const busyRef = useRef(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const phaseRef = useRef<Phase>("idle");
+  /** Incremented by every stop and start; a start that resolves after a newer stop/start discards its stream. */
+  const generation = useRef(0);
 
   const [phase, setPhaseState] = useState<Phase>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -71,6 +75,7 @@ export function CameraScanner({ mode, onResult }: { mode: ScanMode; onResult: (r
   const setPhase = (p: Phase) => { phaseRef.current = p; setPhaseState(p); };
 
   const stopCamera = useCallback(() => {
+    generation.current++;
     if (timerRef.current !== null) { window.clearTimeout(timerRef.current); timerRef.current = null; }
     streamRef.current?.getTracks().forEach((t) => t.stop());
     streamRef.current = null;
@@ -110,6 +115,8 @@ export function CameraScanner({ mode, onResult }: { mode: ScanMode; onResult: (r
   const start = useCallback(async (wantedDevice?: string) => {
     setError(null);
     stopCamera();
+    const gen = ++generation.current;
+    const stale = () => gen !== generation.current;
     if (typeof window !== "undefined" && !window.isSecureContext) {
       setError("Camera access needs a secure (https) connection."); setPhase("error"); return;
     }
@@ -126,6 +133,8 @@ export function CameraScanner({ mode, onResult }: { mode: ScanMode; onResult: (r
           ? { deviceId: { exact: wantedDevice }, width: { ideal: 1280 }, height: { ideal: 720 } }
           : { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } },
       });
+      // Stopped, paused, hidden or restarted while waiting for the camera: release it at once.
+      if (stale()) { stream.getTracks().forEach((t) => t.stop()); return; }
       streamRef.current = stream;
       const video = videoRef.current!;
       video.srcObject = stream;
@@ -149,11 +158,13 @@ export function CameraScanner({ mode, onResult }: { mode: ScanMode; onResult: (r
       } catch { setCameras([]); }
 
       await decoderReady;
+      if (stale()) return;
       setPhase("scanning");
       scanLoop();
     } catch (e) {
+      if (stale()) return;
       stopCamera();
-      if (e instanceof Error && /wasm|WebAssembly|fetch/i.test(e.message)) {
+      if (isLoadError(e) || (e instanceof Error && /wasm|WebAssembly/i.test(e.message))) {
         setError("The scanner couldn't load. Check your connection and reload the page.");
       } else {
         setError((await cameraPermissionDenied()) ? BLOCKED_MSG : cameraErrorMessage(e));
