@@ -21,7 +21,10 @@ export type AnalyticsEvent =
   | { name: "decoder_used"; props: { success: boolean } }
   | { name: "tool_selected"; props: { tool: string } }
   | { name: "validator_used"; props: { tool: string; format: string; valid: boolean } }
-  | { name: "bulk_generation_completed"; props: { kind: "qr" | "barcode"; count: number } };
+  | { name: "bulk_qr_started"; props: { count: number } }
+  | { name: "bulk_qr_completed"; props: { count: number } }
+  | { name: "bulk_barcode_started"; props: { count: number } }
+  | { name: "bulk_barcode_completed"; props: { count: number } };
 
 function send(event: AnalyticsEvent) {
   if (process.env.NODE_ENV !== "production") {

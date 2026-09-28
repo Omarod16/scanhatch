@@ -51,8 +51,8 @@ export const TOOLS: Tool[] = [
 
   // Scanners & utilities
   { id: "scanner", name: "Universal Scanner", summary: "Scan QR codes and barcodes from one screen.", href: "/scanner/", category: "scanner", status: "live", indexable: true },
-  { id: "bulk-qr", name: "Bulk QR Generator", summary: "Generate many QR codes from a CSV file and download a ZIP.", href: "/bulk-qr-generator/", category: "utility", status: "soon" },
-  { id: "bulk-barcode", name: "Bulk Barcode Generator", summary: "Generate many barcodes from a CSV file and download a ZIP.", href: "/bulk-barcode-generator/", category: "utility", status: "soon" },
+  { id: "bulk-qr", name: "Bulk QR Generator", summary: "Generate many QR codes from a CSV file and download a ZIP.", href: "/bulk-qr-generator/", category: "utility", status: "live", indexable: true },
+  { id: "bulk-barcode", name: "Bulk Barcode Generator", summary: "Generate many barcodes from a CSV file and download a ZIP.", href: "/bulk-barcode-generator/", category: "utility", status: "live", indexable: true },
 ];
 
 export const CATEGORY_LABELS: Record<ToolCategory, string> = {

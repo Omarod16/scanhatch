@@ -100,7 +100,12 @@ function bodyPath(m: QrMatrix, style: QrStyle, skip: (r: number, c: number) => b
   return d;
 }
 
-const escAttr = (v: string) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+/** Escapes text for SVG and drops characters XML doesn't allow (control chars, lone surrogates), which would make the file unreadable. */
+const escAttr = (v: string) =>
+  v
+    // eslint-disable-next-line no-control-regex
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, "")
+    .replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 export interface RenderOptions {
   /** Output width/height attribute in px. The SVG itself is resolution-independent. */

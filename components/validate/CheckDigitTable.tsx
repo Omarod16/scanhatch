@@ -5,7 +5,7 @@ export function CheckDigitTable({ steps, caption }: { steps: CheckDigitSteps; ca
   const next10 = Math.ceil(steps.sum / 10) * 10;
   return (
     <div>
-      <div className="overflow-x-auto rounded-lg border border-line">
+      <div className="relative overflow-x-auto rounded-lg border border-line">
         <table className="w-full min-w-max border-collapse text-center font-mono text-sm">
           <caption className="sr-only">{caption ?? "Check digit calculation"}</caption>
           <tbody>

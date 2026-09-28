@@ -9,7 +9,7 @@ const pick = (ids: string[]): Tool[] =>
   ids.map((id) => TOOLS.find((t) => t.id === id)).filter((t): t is Tool => Boolean(t));
 
 const COLUMNS: { title: string; items: Item[] }[] = [
-  { title: "QR Tools", items: pick(["qr-generator", "qr-wifi", "qr-vcard", "qr-decoder", "qr-validator"]) },
+  { title: "QR Tools", items: pick(["qr-generator", "qr-wifi", "qr-validator", "qr-decoder", "bulk-qr"]) },
   { title: "Barcode Tools", items: pick(["barcode-generator", "barcode-validator", "check-digit", "bulk-barcode"]) },
   { title: "Scanners", items: pick(["scanner", "qr-scanner", "barcode-scanner"]) },
   { title: "Resources", items: [PAGES.tools, PAGES.blog, ...pick(["qr-size"])] },
