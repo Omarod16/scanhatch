@@ -28,12 +28,7 @@ export default function Home() {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fog">
             Generate, customise, scan and decode QR codes and barcodes online. Fast, free and designed with privacy in mind.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
-            <Link href="/barcode-generator/" className="btn-secondary">Create Barcode</Link>
-            <Link href="/scanner/" className="btn-secondary">Scan Code</Link>
-          </div>
-          <p className="mt-4 text-sm text-mist">
+          <p className="mt-6 text-sm text-mist">
             Have a picture of a code?{" "}
             <Link href="/qr-decoder/" className="font-semibold text-cyan hover:underline">Decode QR</Link>
             {" / "}
@@ -47,6 +42,11 @@ export default function Home() {
             {" · "}
             <Link href="/check-digit-calculator/" className="font-semibold text-cyan hover:underline">Check Digit Calculator</Link>
           </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
+            <Link href="/barcode-generator/" className="btn-secondary">Create Barcode</Link>
+            <Link href="/scanner/" className="btn-secondary">Scan Code</Link>
+          </div>
         </div>
       </section>
 
