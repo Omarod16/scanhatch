@@ -7,7 +7,7 @@ import { FormatGuideSection } from "@/components/barcode/FormatGuideSection";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 import { PRIVACY_PROMISE } from "@/lib/site";
 
-const TITLE = "Barcode Generator – EAN-13, UPC, Code 128, ITF-14 & More";
+const TITLE = "Barcode Generator – EAN-13, UPC, Code 128 & More";
 const DESCRIPTION =
   "Generate EAN-13, UPC-A, Code 128, ITF-14, Data Matrix and 10 more barcode formats. Check digits are calculated and validated. Download PNG, SVG, JPG or vector PDF.";
 

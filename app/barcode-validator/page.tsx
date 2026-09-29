@@ -6,7 +6,7 @@ import { BarcodeValidator } from "@/components/validate/BarcodeValidator";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 
 const DESCRIPTION = "Check whether a barcode number is valid for EAN-13, UPC-A, UPC-E, ITF-14, Code 128, Code 39, Codabar, MSI and more, with a clear explanation of every rule.";
-export const metadata = pageMetadata({ title: "Barcode Validator – Check EAN, UPC, ITF-14, Code 128 & More", description: DESCRIPTION, path: "/barcode-validator/" });
+export const metadata = pageMetadata({ title: "Barcode Validator – Check EAN, UPC, ITF-14 & More", description: DESCRIPTION, path: "/barcode-validator/" });
 
 const RULES: [string, string][] = [
   ["EAN-13, EAN-8, UPC-A, ITF-14", "Digits only, exact length (13, 8, 12 or 14), and the GS1 mod-10 check digit."],

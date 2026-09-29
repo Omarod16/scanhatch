@@ -3,7 +3,7 @@ import { ContactLine, LegalLayout, LegalTable } from "@/components/legal/LegalLa
 import { pageMetadata } from "@/lib/seo";
 import { OWNER } from "@/lib/site";
 
-const DESCRIPTION = "How ScanHatch handles your information: tools run in your browser, what's kept in session storage for scan history, what our hosting provider sees, and your privacy rights.";
+const DESCRIPTION = "How ScanHatch handles your information: the tools run in your browser, scan history stays in session storage, what our host sees, and your privacy rights.";
 export const metadata = pageMetadata({ title: "Privacy Policy", description: DESCRIPTION, path: "/privacy-policy/" });
 
 export default function PrivacyPolicyPage() {

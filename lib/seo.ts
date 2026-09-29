@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { SITE_NAME, SITE_URL } from "./site";
 
+/** Shared social-sharing image (public/og.png). */
+export const OG_IMAGE = { url: "/og.png", width: 1200, height: 630, alt: "ScanHatch – QR & Barcode Tools" };
+
 export function pageMetadata(opts: {
   title: string;
   description: string;
@@ -17,8 +20,9 @@ export function pageMetadata(opts: {
       siteName: SITE_NAME,
       title: opts.title,
       description: opts.description,
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary", title: opts.title, description: opts.description },
+    twitter: { card: "summary_large_image", title: opts.title, description: opts.description, images: [OG_IMAGE.url] },
   };
 }
 

@@ -42,7 +42,7 @@ export const BARCODE_LANDINGS: BarcodeLanding[] = [
       {
         heading: "Printing EAN-13",
         list: [
-          "Nominal size is 37.29 × 25.93 mm including the blank margins, with 0.33 mm narrow bars. GS1 allows 80% to 200% of that size.",
+          "GS1's nominal EAN-13 is 37.29 × 25.93 mm at a 0.33 mm module width, measured with the first digit sitting inside the left margin. ScanHatch's file at the same module width is about 42.6 × 27.7 mm, because it adds a full 11-module quiet zone on both sides and prints the digits as a separate line. The bars are the same size; the extra space is blank margin. GS1 allows module widths from 80% to 200% of nominal.",
           "Keep the light margin on the left at least 11 bars' width and on the right at least 7, and keep text and borders out of them.",
           "Black bars on white are the most reliable. Avoid red bars, which many scanners can't see.",
           "Don't shorten the bars to fit a small pack without checking your retailer's rules; truncated barcodes are often rejected.",

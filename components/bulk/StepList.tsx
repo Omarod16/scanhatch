@@ -1,4 +1,4 @@
-const STEPS = ["Upload", "Review", "Customize", "Generate", "Download"];
+const STEPS = ["Upload", "Review", "Customise", "Generate", "Download"];
 
 export function StepList({ current }: { current: number }) {
   return (

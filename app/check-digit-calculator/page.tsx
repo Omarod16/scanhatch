@@ -8,7 +8,7 @@ import { gs1CheckDigitSteps, upcEToUpcABody } from "@/lib/barcode/checkdigit";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 
 const DESCRIPTION = "Calculate the check digit for EAN-13, EAN-8, UPC-A and ITF-14 barcodes, with the full calculation shown step by step and explained.";
-export const metadata = pageMetadata({ title: "Check Digit Calculator – EAN-13, EAN-8, UPC-A & ITF-14", description: DESCRIPTION, path: "/check-digit-calculator/" });
+export const metadata = pageMetadata({ title: "Check Digit Calculator – EAN, UPC & ITF-14", description: DESCRIPTION, path: "/check-digit-calculator/" });
 
 const EXAMPLES = [
   { id: "ean13", name: "EAN-13", body: "400638133393", text: "Twelve digits, then the check digit. Weights alternate 1, 3, 1, 3… from the left, so the digit next to the check digit is multiplied by 3." },

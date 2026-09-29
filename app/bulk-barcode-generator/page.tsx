@@ -6,7 +6,7 @@ import { BARCODE_FORMATS } from "@/lib/barcode/formats";
 import { MAX_BATCH_ROWS } from "@/lib/bulk/limits";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 
-const DESCRIPTION = `Generate up to ${MAX_BATCH_ROWS} barcodes from a CSV file: EAN-13, UPC-A, Code 128, ITF-14, Data Matrix and more. Every row is validated, check digits included, and the ZIP is built in your browser.`;
+const DESCRIPTION = `Generate up to ${MAX_BATCH_ROWS} barcodes from a CSV: EAN-13, UPC-A, Code 128, ITF-14, Data Matrix and more. Every row is validated and the ZIP is built in your browser.`;
 export const metadata = pageMetadata({ title: "Bulk Barcode Generator Online – CSV to ZIP", description: DESCRIPTION, path: "/bulk-barcode-generator/" });
 
 export default function BulkBarcodePage() {

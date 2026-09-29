@@ -17,7 +17,7 @@ export default function ToolsPage() {
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Tools", path: "/tools/" }])} />
       <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">All tools</h1>
       <p className="mt-3 max-w-2xl text-fog">
-        Tools marked &ldquo;Coming soon&rdquo; are in development. Everything else works now, in your browser.
+        Every tool runs in your browser. Create, scan, check and bulk-generate QR codes and barcodes.
       </p>
       <div className="mt-12 space-y-14">
         {ORDER.map((cat) => (

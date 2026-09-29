@@ -7,7 +7,7 @@ import { UpcConverter } from "@/components/validate/UpcConverter";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 
 const DESCRIPTION = "Validate EAN-13, EAN-8, UPC-A and UPC-E product numbers, check their check digits, and convert between UPC-E and UPC-A.";
-export const metadata = pageMetadata({ title: "EAN & UPC Validator – Check GTIN Numbers and Convert UPC-E", description: DESCRIPTION, path: "/ean-upc-validator/" });
+export const metadata = pageMetadata({ title: "EAN & UPC Validator – Check GTINs, Convert UPC-E", description: DESCRIPTION, path: "/ean-upc-validator/" });
 
 export default function EanUpcValidatorPage() {
   return (

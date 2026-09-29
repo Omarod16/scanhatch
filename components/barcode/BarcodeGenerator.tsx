@@ -301,9 +301,15 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
             <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
               <dt className="text-mist">Encodes</dt>
               <dd className="font-mono break-all text-white">{v.value}</dd>
-              <dt className="text-mist">Print size</dt>
-              <dd className="text-white">{out.rendered.widthMm.toFixed(1)} × {out.rendered.heightMm.toFixed(1)} mm</dd>
+              <dt className="text-mist">Output size</dt>
+              <dd className="text-white">{out.rendered.widthMm.toFixed(1)} × {out.rendered.heightMm.toFixed(1)} mm <span className="text-mist">(including blank margins and digits)</span></dd>
             </dl>
+          )}
+          {out.rendered && v.ok && ["ean13", "ean8", "upca", "upce"].includes(formatId) && (
+            <p className="mt-2 text-sm text-mist">
+              This is larger than GS1&apos;s nominal symbol size because ScanHatch adds a full quiet zone on both sides and prints
+              the digits outside the bars. The bars themselves use the module width you set ({style.moduleMm} mm).
+            </p>
           )}
           <div className="mt-4">
             <WarningList warnings={warnings} notes={infoNotes} />

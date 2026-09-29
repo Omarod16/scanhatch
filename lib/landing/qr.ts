@@ -270,7 +270,7 @@ export const QR_LANDINGS: QrLanding[] = [
   {
     kind: "qr", qrType: "whatsapp", slug: "whatsapp-qr-code-generator", registryId: "qr-whatsapp",
     name: "WhatsApp QR Code Generator",
-    title: "WhatsApp QR Code Generator – Start a Chat by Scanning",
+    title: "WhatsApp QR Code Generator – Start a Chat",
     description: "Create a QR code that opens a WhatsApp chat with your number, optionally with a starter message. Uses WhatsApp's official wa.me links.",
     intro: "Customers scan the code and a WhatsApp chat with you opens, without them saving your number first.",
     howTo: [

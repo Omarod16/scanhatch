@@ -30,7 +30,10 @@ export function QrGenerator({ initialType = "url" }: { initialType?: ContentType
   // The hash never leaves the browser, so pre-filled content isn't sent to our server.
   useEffect(() => {
     const read = () => {
-      const [key, raw] = window.location.hash.slice(1).split("=");
+      const hash = window.location.hash.slice(1);
+      const eq = hash.indexOf("=");
+      const key = eq === -1 ? hash : hash.slice(0, eq);
+      const raw = eq === -1 ? "" : hash.slice(eq + 1);
       if (!isContentTypeId(key)) return;
       setTypeId(key);
       setTab("content");

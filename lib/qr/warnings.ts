@@ -59,7 +59,7 @@ export function checkReadability(m: QrMatrix, style: QrStyle, payloadLength: num
   }
 
   if (style.dotStyle === "dots" || style.dotStyle === "diamond") {
-    out.push({ id: "dots", level: "info", message: "Dot and diamond styles leave more white space between modules, which can make older scanners struggle." });
+    out.push({ id: "dots", level: "warn", message: "Dot and diamond styles leave more white space between modules. Most phone cameras read them, but some scanner apps have more difficulty with highly stylised codes, so test with the devices your audience will use." });
   }
 
   return out;

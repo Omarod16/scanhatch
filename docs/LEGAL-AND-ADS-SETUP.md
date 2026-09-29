@@ -4,15 +4,25 @@ Phase 9 prepared the legal pages and the consent/ads architecture. **Ads are
 intentionally disabled.** None of this is a legal opinion: the pages describe the
 site's actual behaviour and need owner and legal review before launch.
 
-## MANUAL CONFIGURATION REQUIRED
+## Owner configuration
+
+Confirmed by the owner and set in `OWNER` in `lib/site.ts`:
+
+| Item | Value | Used on |
+|---|---|---|
+| Contact email | hello@scanhatch.com | /contact, /privacy-policy, /terms |
+| Operator (data controller) | Omar Oulad Daoud | /privacy-policy ("Who runs ScanHatch") |
+| Governing law | England and Wales | /terms ("Governing law") |
+
+No company name, registration number, address, VAT number or DPO has been provided, so none is shown. Don't add them unless the owner supplies them.
+
+## Still to do before launch
 
 | Item | Where | Why |
 |---|---|---|
-| Contact email | `OWNER.contactEmail` in `lib/site.ts` | The contact page and policies need a real address for support and privacy requests. Until it's set, /contact shows "A contact email address … will be published on this page." |
-| Operator identity (data controller) | `OWNER.operatorName` in `lib/site.ts` | UK data protection law expects privacy notices to identify the controller. Decide whether that's you as an individual or a business entity |
-| Governing law | `OWNER.governingLaw` in `lib/site.ts` | The Terms omit the governing-law clause until this is set. Confirm with legal advice |
-| Legal review | `/privacy-policy`, `/terms`, `/cookie-policy` | In particular: lawful bases (hosting logs); whether scan history counts as storage "strictly necessary" for a service the user requested under PECR, or should be opt-in or described differently; the liability wording; international transfers via Cloudflare |
-| Cloudflare edge features | Cloudflare dashboard | Verify which scripts and cookies Cloudflare adds in production (see docs/DATA-FLOW.md), and enable "Always Use HTTPS" |
+| Legal review | `/privacy-policy`, `/terms`, `/cookie-policy` | In particular: lawful bases (hosting logs); whether scan history counts as storage "strictly necessary" for a service the user requested under PECR, or should be described differently; the liability wording; international transfers via Cloudflare. This is technical documentation, not legal advice |
+| Mailbox | hello@scanhatch.com | Make sure the address receives mail before the site goes live |
+| Cloudflare production settings | Dashboard | See `docs/PRODUCTION-CHECKLIST.md` |
 | `LEGAL_UPDATED` | `lib/site.ts` | Update whenever policy text changes |
 
 ## Consent architecture (`lib/consent/`)
@@ -35,7 +45,7 @@ site's actual behaviour and need owner and legal review before launch.
 
 - `NEXT_PUBLIC_ADS_MODE`: `disabled` (default) | `placeholder` (labelled empty boxes for layout review; no ad requests) | `enabled`.
 - `enabled` still renders nothing until: a publisher ID is supplied (`NEXT_PUBLIC_ADSENSE_CLIENT`, set in the build environment, never committed as a fake value), a CMP provider is registered, advertising consent is granted, and the AdSense loader is implemented and reviewed. The loader intentionally doesn't exist yet (`ADSENSE_LOADER_IMPLEMENTED = false`).
-- Reserved placements: `landing-content` (inside landing-page article content, below the tool and its privacy notice), `article-mid` (before an article's FAQ), and `article-end` (after an article, before related tools). None is inside or next to generator controls, Generate or Download buttons.
+- Reserved placements: `landing-content` (inside landing-page article content, below the tool and its privacy notice), `article-mid` (in a blog article, before its FAQ) and `article-end` (at the very end of a blog article page, after the related-tools and related-articles sections). None is inside or next to generator controls, Generate or Download buttons.
 - Activation is a controlled deployment step: get AdSense approval, configure the CMP, implement and review the loader, update the policies, then deploy.
 
 ## Security headers must be updated before activation

@@ -26,7 +26,7 @@ export default function Home() {
             Create QR Codes &amp; Barcodes in Seconds
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fog">
-            Generate, customize, scan and decode QR codes and barcodes online. Fast, free and designed with privacy in mind.
+            Generate, customise, scan and decode QR codes and barcodes online. Fast, free and designed with privacy in mind.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
@@ -60,10 +60,13 @@ export default function Home() {
           <h2 id="privacy" className="text-2xl font-bold tracking-tight text-white">Private by design</h2>
           <div className="space-y-4 text-fog">
             <p>
-              Your codes are generated in your browser whenever possible. The link, WiFi password or contact details
-              you type are turned into a QR code on your own device and are not uploaded to ScanHatch.
+              QR codes and barcodes are created, scanned and checked in your browser. The link, WiFi password or
+              contact details you enter are processed on your own device and aren&apos;t sent to ScanHatch.
             </p>
-            <p>No account is needed. Logos you add stay on your device too.</p>
+            <p>
+              No account is needed, and logos you add stay on your device. Recent scans are kept only in this
+              browser tab until you close it. The <Link href="/privacy-policy/" className="text-cyan underline underline-offset-2">privacy policy</Link> has the details.
+            </p>
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@ import { ContactLine, LegalLayout } from "@/components/legal/LegalLayout";
 import { pageMetadata } from "@/lib/seo";
 import { OWNER } from "@/lib/site";
 
-const DESCRIPTION = "The terms for using ScanHatch's free QR code and barcode tools: acceptable use, your responsibility for content, barcode number ownership, generated files and limitations.";
+const DESCRIPTION = "The terms for using ScanHatch's free QR code and barcode tools: acceptable use, your content, barcode number ownership, generated files and limitations.";
 export const metadata = pageMetadata({ title: "Terms of Use", description: DESCRIPTION, path: "/terms/" });
 
 export default function TermsPage() {

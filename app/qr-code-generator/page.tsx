@@ -84,7 +84,7 @@ export default function QrCodeGeneratorPage() {
       </article>
 
       <div className="container-page">
-        <RelatedTools ids={["qr-validator", "qr-scanner", "qr-decoder", "qr-wifi", "qr-vcard", "qr-size"]} />
+        <RelatedTools ids={["qr-validator", "qr-scanner", "qr-decoder", "qr-wifi", "qr-vcard"]} />
       </div>
     </>
   );

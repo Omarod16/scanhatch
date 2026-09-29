@@ -4,6 +4,7 @@ import "./globals.css";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { OG_IMAGE } from "@/lib/seo";
 
 /**
  * Manrope (SIL Open Font License), latin subset, self-hosted and preloaded.
@@ -31,8 +32,9 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: [OG_IMAGE],
   },
-  twitter: { card: "summary", title: SITE_TITLE, description: SITE_DESCRIPTION },
+  twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION, images: [OG_IMAGE.url] },
 };
 
 export const viewport: Viewport = {

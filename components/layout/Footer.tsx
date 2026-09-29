@@ -12,7 +12,7 @@ const COLUMNS: { title: string; items: Item[] }[] = [
   { title: "QR Tools", items: pick(["qr-generator", "qr-wifi", "qr-validator", "qr-decoder", "bulk-qr"]) },
   { title: "Barcode Tools", items: pick(["barcode-generator", "bc-ean13", "barcode-validator", "check-digit", "bulk-barcode"]) },
   { title: "Scanners", items: pick(["scanner", "qr-scanner", "barcode-scanner"]) },
-  { title: "Resources", items: [PAGES.tools, PAGES.blog, ...pick(["qr-size"])] },
+  { title: "Resources", items: [PAGES.tools, PAGES.blog] },
   { title: "Company", items: [PAGES.about, PAGES.contact] },
   { title: "Legal", items: [PAGES.privacy, PAGES.terms, PAGES.cookies] },
 ];

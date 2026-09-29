@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useId, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useId, useRef, useState } from "react";
 import type { BulkRow } from "@/lib/bulk/rows";
 
 type Filter = "all" | "invalid" | "duplicates";
@@ -48,9 +48,25 @@ export const RowTable = memo(function RowTable({ rows, valueLabel, fileNames, in
 }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [editing, setEditing] = useState<number | null>(null);
+  // After Save/Cancel, keyboard focus returns to the row's Edit/Fix button (or the nearest remaining row).
+  const [returnTo, setReturnTo] = useState<number | null>(null);
+  const scroller = useRef<HTMLDivElement>(null);
+  const closeEditor = useCallback((row: number) => { setEditing(null); setReturnTo(row); }, []);
   const invalid = rows.filter((r) => !r.valid).length;
   const dups = rows.filter((r) => r.duplicateOf !== undefined).length;
   const shown = rows.filter((r) => (filter === "invalid" ? !r.valid : filter === "duplicates" ? r.duplicateOf !== undefined : true));
+  useEffect(() => {
+    if (returnTo === null) return;
+    const box = scroller.current;
+    const buttons = box ? [...box.querySelectorAll<HTMLButtonElement>("button[data-edit-row]")] : [];
+    const target = buttons.find((b) => Number(b.dataset.editRow) === returnTo)
+      ?? buttons.find((b) => Number(b.dataset.editRow) > returnTo)
+      ?? buttons[buttons.length - 1];
+    if (target) { target.focus({ preventScroll: true }); target.scrollIntoView({ block: "nearest" }); }
+    else box?.focus({ preventScroll: true });
+    setReturnTo(null);
+  }, [returnTo, rows]);
+
   const filters: [Filter, string, number][] = [["all", "All", rows.length], ["invalid", "Invalid", invalid], ["duplicates", "Duplicates", dups]];
 
   return (
@@ -63,7 +79,7 @@ export const RowTable = memo(function RowTable({ rows, valueLabel, fileNames, in
           </button>
         ))}
       </div>
-      <div className="relative max-h-[32rem] overflow-auto rounded-xl border border-line" tabIndex={0} aria-label="Rows from your file (scrollable)">
+      <div ref={scroller} className="relative max-h-[32rem] overflow-auto rounded-xl border border-line" tabIndex={0} aria-label="Rows from your file (scrollable)">
         <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
           <caption className="sr-only">Rows from your CSV file with validation status. Row numbers match your spreadsheet, where row 1 is the header.</caption>
           <thead className="sticky top-0 z-10 bg-ink-2 text-xs text-mist">
@@ -98,14 +114,14 @@ export const RowTable = memo(function RowTable({ rows, valueLabel, fileNames, in
                       {r.warnings.map((w) => <p key={w} className="text-amber-100">{w}</p>)}
                       {r.notes.map((n) => <p key={n} className="text-fog">{n}</p>)}
                       {r.valid && !skipped && fileNames.get(r.row) && <p className="text-mist">File: <span className="font-mono break-all">{fileNames.get(r.row)}</span></p>}
-                      <button type="button" className="mt-1 text-sm font-semibold text-cyan underline underline-offset-2" onClick={() => setEditing(editing === r.row ? null : r.row)} aria-expanded={editing === r.row}>
+                      <button type="button" data-edit-row={r.row} className="mt-1 text-sm font-semibold text-cyan underline underline-offset-2" onClick={() => setEditing(editing === r.row ? null : r.row)} aria-expanded={editing === r.row}>
                         {r.valid ? "Edit" : "Fix"}<span className="sr-only"> row {r.row}</span>
                       </button>
                     </td>
                   </tr>
                   {editing === r.row && (
                     <FixRow row={r} colSpan={6} valueLabel={valueLabel} canEditName={canEditName}
-                      onCancel={() => setEditing(null)} onSave={(v, n) => { onFix(r.row, v, n); setEditing(null); }} />
+                      onCancel={() => closeEditor(r.row)} onSave={(v, n) => { onFix(r.row, v, n); closeEditor(r.row); }} />
                   )}
                 </FragmentRow>
               );

@@ -7,7 +7,7 @@ export const BARCODE_ARTICLES: Article[] = [
     slug: "what-is-a-barcode",
     title: "What Is a Barcode and How Does It Work?",
     metaTitle: "What Is a Barcode and How Does It Work?",
-    description: "How barcodes store numbers and text in bars and spaces, how laser, linear and camera scanners read them, what the quiet zone and check digit are for, and how the common formats differ.",
+    description: "How barcodes store data in bars and spaces, how laser, linear and camera scanners read them, what quiet zones and check digits do, and how formats differ.",
     category: "barcodes", publishedAt: D, updatedAt: D,
     intro: [
       "A barcode is a way of writing a number or short piece of text so that a machine can read it quickly and without mistakes. The classic stripes are a linear or 1D barcode; square codes such as QR codes are 2D barcodes. This guide covers how the stripes carry data and how scanners read them.",
@@ -62,7 +62,7 @@ export const BARCODE_ARTICLES: Article[] = [
     slug: "qr-code-vs-barcode",
     title: "QR Code vs Barcode: Which Should You Use?",
     metaTitle: "QR Code vs Barcode: Differences and Which to Use",
-    description: "How QR codes and traditional barcodes differ in capacity, error correction, scanning and cost, and which to choose for products, shipping, inventory, marketing and tickets.",
+    description: "How QR codes and traditional barcodes differ in capacity, error correction and scanning, and which to use for products, shipping, inventory and marketing.",
     category: "barcodes", publishedAt: D, updatedAt: D,
     intro: [
       "QR codes and traditional barcodes are both barcodes: one draws data in a line of bars, the other in a grid of squares. The right one depends less on the technology than on who or what will scan it, and what they expect.",
@@ -111,8 +111,8 @@ export const BARCODE_ARTICLES: Article[] = [
   {
     slug: "barcode-check-digits-explained",
     title: "Barcode Check Digits Explained, With Worked Examples",
-    metaTitle: "Barcode Check Digits Explained: How They're Calculated",
-    description: "What a check digit is, how the GS1 mod 10 check digit for EAN, UPC and ITF-14 is calculated step by step, how Code 39, Code 128 and ISBN-10 differ, and what check digits can and can't catch.",
+    metaTitle: "Barcode Check Digits Explained, With Examples",
+    description: "How the GS1 mod 10 check digit for EAN, UPC and ITF-14 is calculated step by step, how Code 39, Code 128 and ISBN-10 differ, and what check digits catch.",
     category: "barcodes", publishedAt: D, updatedAt: D,
     intro: [
       "The last digit of most product barcodes isn't part of the product number. It's a check digit, calculated from all the other digits so that a scanner or a person typing the number can tell when something has gone wrong. This guide shows exactly how the common ones are calculated.",
@@ -170,7 +170,7 @@ export const BARCODE_ARTICLES: Article[] = [
     slug: "ean-13-vs-upc-a",
     title: "EAN-13 vs UPC-A: What's the Difference?",
     metaTitle: "EAN-13 vs UPC-A: What's the Difference?",
-    description: "How EAN-13 and UPC-A barcodes relate, why a UPC-A is an EAN-13 starting with 0, where each is used, whether you can convert between them, and which to put on your product.",
+    description: "How EAN-13 and UPC-A relate, why a UPC-A is an EAN-13 starting with 0, where each is used, how to convert them, and which to put on your product.",
     category: "barcodes", publishedAt: D, updatedAt: D,
     intro: [
       "EAN-13 and UPC-A look almost identical and are read by the same scanners. The short answer is that UPC-A is a special case of EAN-13. The details explain why shops in different countries still ask for one or the other.",
@@ -219,7 +219,7 @@ export const BARCODE_ARTICLES: Article[] = [
     slug: "what-is-code-128",
     title: "What Is Code 128? Character Sets, Check Characters and GS1-128",
     metaTitle: "What Is Code 128? Character Sets, Checks and GS1-128",
-    description: "How Code 128 barcodes work: character sets A, B and C, why numbers compress to half the width, the mod 103 check character, GS1-128 Application Identifiers, and when to choose Code 128.",
+    description: "How Code 128 works: character sets A, B and C, why numbers compress to half the width, the mod 103 check character, and GS1-128 Application Identifiers.",
     category: "barcodes", publishedAt: D, updatedAt: D,
     intro: [
       "Code 128 is the workhorse of shipping labels, warehouse systems and asset tags. It can encode any standard keyboard character, and it's one of the most compact linear barcodes available. Here's how it manages both, and how its GS1-128 variant carries structured supply-chain data.",
@@ -289,7 +289,7 @@ export const BARCODE_ARTICLES: Article[] = [
     slug: "what-is-itf-14",
     title: "What Is ITF-14? GTIN-14 Barcodes for Cartons Explained",
     metaTitle: "What Is ITF-14? GTIN-14 Carton Barcodes Explained",
-    description: "What ITF-14 barcodes are, how a GTIN-14 is built from a product's GTIN with an indicator digit, where ITF-14 fits in the packaging hierarchy, and how to print it on corrugated cartons.",
+    description: "What ITF-14 barcodes are, how a GTIN-14 is built with an indicator digit, where ITF-14 fits in the packaging hierarchy, and how to print it on cartons.",
     category: "barcodes", publishedAt: D, updatedAt: D,
     intro: [
       "ITF-14 is the barcode printed on the outside of shipping cartons, usually inside a thick black frame. It identifies a case of products rather than the product itself. Getting its number right matters more than its appearance, so this guide starts there.",

@@ -51,7 +51,7 @@ export const FORMAT_GUIDES: Record<BarcodeFormatId, FormatGuide> = {
       "Making up a number. Retailers only accept GTINs licensed from GS1 (or a legitimate reseller of GS1 numbers). A barcode generator can't register a number for you.",
       "Printing it too small or truncating the bars. Retailers may reject labels below 80% of nominal size.",
     ],
-    printing: "Nominal size is a 0.33 mm module (about 37.3 × 25.9 mm including quiet zones); GS1 allows 80% to 200%. Keep the light margins clear, especially the 11-module zone on the left.",
+    printing: "Nominal size is a 0.33 mm module (about 37.3 × 25.9 mm including quiet zones); GS1 allows 80% to 200%. ScanHatch's download is somewhat larger at the same module width because it adds a full quiet zone on both sides and prints the digits outside the bars. Keep the light margins clear, especially the 11-module zone on the left.",
     related: ["upca", "ean8", "itf14"],
   },
   ean8: {
@@ -62,7 +62,7 @@ export const FORMAT_GUIDES: Record<BarcodeFormatId, FormatGuide> = {
       "Chopping digits off an existing EAN-13. EAN-8 numbers are issued separately by GS1.",
       "Using EAN-8 when an EAN-13 would fit. GS1 only issues EAN-8 numbers when space is genuinely limited.",
     ],
-    printing: "Same module-width rules as EAN-13 (0.264–0.66 mm). Nominal size is roughly 26.7 × 21.6 mm including quiet zones.",
+    printing: "Same module-width rules as EAN-13 (0.264–0.66 mm). Nominal size is roughly 26.7 × 21.6 mm including quiet zones; ScanHatch's download is somewhat larger because it adds a quiet zone on both sides and prints the digits outside the bars.",
     related: ["ean13", "upce"],
   },
   upca: {

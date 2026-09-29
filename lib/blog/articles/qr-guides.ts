@@ -7,7 +7,7 @@ export const QR_GUIDES: Article[] = [
     slug: "how-to-create-a-qr-code",
     title: "How to Create a QR Code (That Actually Scans)",
     metaTitle: "How to Create a QR Code That Scans Reliably",
-    description: "A step-by-step guide to making a QR code for a website or anything else: choosing the content, keeping it readable, picking the right file format and size, and testing before you print.",
+    description: "A step-by-step guide to making a QR code that scans: choosing the content, keeping it readable, picking the file format and size, and testing before print.",
     category: "how-to", publishedAt: D, updatedAt: D,
     intro: [
       "Making a QR code takes a minute. Making one that still works when it's printed on a poster, stuck to a window or photographed in poor light takes a few more decisions. This guide walks through them using the most common case, a QR code for a website, with notes for other content types.",
@@ -75,8 +75,8 @@ export const QR_GUIDES: Article[] = [
   {
     slug: "qr-code-error-correction-explained",
     title: "QR Code Error Correction Explained: L, M, Q and H",
-    metaTitle: "QR Code Error Correction Levels Explained (L, M, Q, H)",
-    description: "What QR code error correction levels L, M, Q and H mean, how Reed-Solomon codes let damaged codes scan, how the level changes a code's size, and which level to choose, including for logos.",
+    metaTitle: "QR Code Error Correction Levels (L, M, Q, H)",
+    description: "What QR error correction levels L, M, Q and H mean, how Reed-Solomon lets damaged codes scan, how the level changes size, and which to choose.",
     category: "technical", publishedAt: D, updatedAt: D,
     intro: [
       "Every QR code carries extra data that lets a scanner repair damage: a scratch, a smudge, a bit of glare or a logo in the middle. How much extra is set by the error-correction level. Choosing it is a trade-off between robustness and size.",
@@ -131,7 +131,7 @@ export const QR_GUIDES: Article[] = [
     slug: "qr-code-size-and-quiet-zone",
     title: "QR Code Size and Quiet Zone: How Big Should a QR Code Be?",
     metaTitle: "QR Code Size & Quiet Zone: How Big Should It Be?",
-    description: "How big to print a QR code for a given scanning distance, why the blank margin (quiet zone) matters, how data length changes module size, and how to export files that print sharply.",
+    description: "How big to print a QR code for a scanning distance, why the quiet zone matters, how data length affects module size, and how to export sharp print files.",
     category: "technical", publishedAt: D, updatedAt: D,
     intro: [
       "Most QR codes that fail in the real world don't fail because of their content. They fail because they're printed too small for the distance, or because a design eats into the blank margin around them. Both are easy to get right with a few numbers.",
@@ -182,7 +182,7 @@ export const QR_GUIDES: Article[] = [
   {
     slug: "how-to-create-a-wifi-qr-code",
     title: "How to Create a WiFi QR Code (and Fix One That Won't Connect)",
-    metaTitle: "How to Create a WiFi QR Code and Fix Connection Problems",
+    metaTitle: "How to Make a WiFi QR Code That Connects",
     description: "Make a QR code that lets guests join your WiFi, share it safely with a guest network, and fix the common reasons a WiFi QR code scans but doesn't connect.",
     category: "how-to", publishedAt: D, updatedAt: D,
     intro: [
@@ -245,7 +245,7 @@ export const QR_GUIDES: Article[] = [
     slug: "static-vs-dynamic-qr-codes",
     title: "Static vs Dynamic QR Codes: What's the Difference?",
     metaTitle: "Static vs Dynamic QR Codes: What's the Difference?",
-    description: "How static and dynamic QR codes differ, what dynamic QR services really do, the risks of relying on them, and how to get editable links and scan counts with a static code and your own website.",
+    description: "How static and dynamic QR codes differ, what dynamic QR services do, the risks of relying on them, and how to get editable links with your own website.",
     category: "technical", publishedAt: D, updatedAt: D,
     intro: [
       "Many QR code services advertise “dynamic” codes that you can edit after printing and that count scans, often after a free trial. The difference from a static code is simple once you see what's inside each one, and that also shows the trade-offs.",
@@ -302,7 +302,7 @@ export const QR_GUIDES: Article[] = [
   {
     slug: "qr-code-colours-contrast-and-logos",
     title: "QR Code Colours, Contrast and Logos: Designing Codes That Scan",
-    metaTitle: "QR Code Colours, Contrast and Logos: Design Rules That Work",
+    metaTitle: "QR Code Colours, Contrast and Logos: Design Rules",
     description: "How to use brand colours, gradients, rounded styles and logos on a QR code without breaking it: contrast, inverted colours, logo size, error correction and testing.",
     category: "technical", publishedAt: D, updatedAt: D,
     intro: [

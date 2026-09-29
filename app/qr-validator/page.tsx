@@ -40,7 +40,7 @@ export default function QrValidatorPage() {
           it&apos;s scanned from matter just as much. As a rule of thumb, a QR code should be at least about a tenth as wide as the scanning distance.
         </p>
       </article>
-      <div className="container-page"><RelatedTools ids={["qr-generator", "qr-scanner", "qr-decoder", "barcode-validator", "scanner", "qr-size"]} /></div>
+      <div className="container-page"><RelatedTools ids={["qr-generator", "qr-scanner", "qr-decoder", "barcode-validator", "scanner"]} /></div>
     </>
   );
 }

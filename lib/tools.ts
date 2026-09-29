@@ -76,8 +76,9 @@ export const CATEGORY_LABELS: Record<ToolCategory, string> = {
   format: "Barcode formats",
 };
 
+/** Live tools in a category. Unfinished ("soon") tools are kept in the registry but never shown publicly. */
 export const toolsIn = (category: ToolCategory) =>
-  TOOLS.filter((t) => t.category === category);
+  TOOLS.filter((t) => t.category === category && t.status === "live");
 
 export const liveTools = () => TOOLS.filter((t) => t.status === "live");
 

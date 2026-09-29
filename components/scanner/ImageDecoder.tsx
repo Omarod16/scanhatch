@@ -21,6 +21,7 @@ const noun = (m: ScanMode) => (m === "qr" ? "QR code" : m === "barcode" ? "barco
 
 export function ImageDecoder({ mode, onDecoded }: { mode: ScanMode; onDecoded?: (r: NormalisedResult) => void }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const chooseRef = useRef<HTMLButtonElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<State>({ kind: "idle" });
   const [dragging, setDragging] = useState(false);
@@ -85,7 +86,8 @@ export function ImageDecoder({ mode, onDecoded }: { mode: ScanMode; onDecoded?: 
     return () => window.removeEventListener("paste", onPaste);
   }, [process]);
 
-  const reset = () => { setState({ kind: "idle" }); setPreview(null); inputRef.current?.focus(); };
+  // Focus the visible "Choose an image" button (the file input itself is visually hidden).
+  const reset = () => { setState({ kind: "idle" }); setPreview(null); chooseRef.current?.focus(); };
 
   return (
     <div>
@@ -107,7 +109,7 @@ export function ImageDecoder({ mode, onDecoded }: { mode: ScanMode; onDecoded?: 
           <p className="text-base font-semibold text-white">{dragging ? "Drop the image to decode it" : "Drop an image here or choose a file"}</p>
           <p className="mt-1 text-sm text-mist">PNG, JPG or WEBP up to 10 MB. You can also paste an image.</p>
         </div>
-        <button type="button" className="btn-primary" onClick={() => inputRef.current?.click()} disabled={state.kind === "working"}>
+        <button ref={chooseRef} type="button" className="btn-primary" onClick={() => inputRef.current?.click()} disabled={state.kind === "working"}>
           {state.kind === "working" ? "Reading image…" : preview ? "Choose another image" : "Choose an image"}
         </button>
         <input ref={inputRef} type="file" accept={IMAGE_ACCEPT} className="sr-only" tabIndex={-1} aria-label={`Upload an image containing a ${noun(mode)}`} onChange={(e) => process(e.target.files?.[0])} />

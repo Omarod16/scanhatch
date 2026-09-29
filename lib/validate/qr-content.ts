@@ -197,6 +197,9 @@ export function validateQrContent(raw: string): ContentValidation {
   } else {
     if (/^(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/\S*)?$/i.test(t)) {
       warn("This looks like a web address without https://. Many phone cameras show it as plain text instead of a link. Add https:// at the start.");
+    } else if (/^\s*(javascript|vbscript|data|file|blob):/i.test(t)) {
+      const scheme = t.trim().split(":")[0].toLowerCase();
+      err(`The code decodes, but it contains a "${scheme}:" link rather than a web address. Links like this can run script or open embedded or local content in some apps, so they shouldn't be treated as a safe link. ScanHatch never opens them. Use an https:// address instead.`);
     } else if (/^[a-z][a-z0-9+.-]*:/i.test(t) && !/\s/.test(t.slice(0, 20))) {
       note(`Starts with "${t.split(":")[0]}:", which may be an app-specific link. Phones open it only if a matching app is installed.`);
     } else ok(`Plain text, ${[...t].length} characters.`);

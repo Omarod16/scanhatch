@@ -7,7 +7,7 @@ export const QR_BASICS: Article[] = [
     slug: "what-is-a-qr-code",
     title: "What Is a QR Code? How QR Codes Work",
     metaTitle: "What Is a QR Code? How QR Codes Work",
-    description: "What a QR code is, where it came from, and how a phone turns the black-and-white squares back into a link or text: finder patterns, versions, modes, masking and error correction.",
+    description: "What a QR code is, where it came from, and how a phone turns the squares back into a link or text: finder patterns, versions, masking and error correction.",
     category: "qr-codes", publishedAt: D, updatedAt: D,
     intro: [
       "A QR code is a square, two-dimensional barcode that stores text: often a web address, but also WiFi details, contact cards or plain messages. Any phone camera can read one in a fraction of a second, and it still works when part of it is dirty or covered.",
@@ -82,7 +82,7 @@ export const QR_BASICS: Article[] = [
     slug: "what-can-a-qr-code-contain",
     title: "What Information Can a QR Code Contain?",
     metaTitle: "What Information Can a QR Code Contain?",
-    description: "The kinds of content a QR code can hold, from links and WiFi logins to contact cards, messages, locations and events, with the exact formats phones recognise and the limits on size.",
+    description: "What a QR code can hold, from links and WiFi logins to contacts, messages, locations and events, the formats phones recognise, and the size limits.",
     category: "qr-codes", publishedAt: D, updatedAt: D,
     intro: [
       "Every QR code contains text, nothing more. What makes one code open a website and another join a WiFi network is the format of that text. Phones recognise a handful of standard formats and offer a matching action.",
@@ -141,7 +141,7 @@ export const QR_BASICS: Article[] = [
     slug: "how-to-scan-a-qr-code",
     title: "How to Scan a QR Code on iPhone, Android or a Computer",
     metaTitle: "How to Scan a QR Code on iPhone, Android or Computer",
-    description: "How to scan a QR code with an iPhone, an Android phone or a computer, how to read a code from a screenshot, what to do when a code won't scan, and how to check a link is safe.",
+    description: "How to scan a QR code on iPhone, Android or a computer, read one from a screenshot, fix codes that won't scan, and check a link is safe.",
     category: "scanning", publishedAt: D, updatedAt: D,
     intro: [
       "Most phones can scan QR codes with the built-in camera, no app needed. This guide covers the quickest way on each kind of device, how to read a code that's already on your screen, and what to try when a code refuses to scan.",

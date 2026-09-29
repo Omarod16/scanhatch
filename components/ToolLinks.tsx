@@ -26,8 +26,8 @@ export function RelatedTools({ ids, title = "Related tools" }: { ids: string[]; 
     <section aria-labelledby="related-tools" className="mt-16">
       <h2 id="related-tools" className="mb-5 text-xl font-bold text-white">{title}</h2>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {ids.map((id) => (
-          <li key={id}><ToolItem tool={toolById(id)} /></li>
+        {ids.map((id) => toolById(id)).filter((t) => t.status === "live").map((t) => (
+          <li key={t.id}><ToolItem tool={t} /></li>
         ))}
       </ul>
     </section>

@@ -137,7 +137,7 @@ export function BulkQrGenerator() {
           </section>
 
           <section aria-labelledby="bq-design" className="space-y-5 lg:sticky lg:top-24 lg:self-start">
-            <h2 id="bq-design" className="text-xl font-bold text-white">Customize</h2>
+            <h2 id="bq-design" className="text-xl font-bold text-white">Customise</h2>
             <div className="space-y-5 rounded-2xl border border-line bg-ink-2 p-4 sm:p-5">
               {sampleSvg && (
                 <div className="flex items-center gap-4">
