@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -63,6 +64,7 @@ ScanHatch,https://scanhatch.com`}</pre>
           logo); for gradients, custom dots and eye shapes, use the individual <a href="/qr-code-generator/">QR Code Generator</a>.
         </p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="bulk" /></div>
       <div className="container-page"><RelatedTools ids={["qr-generator", "qr-validator", "qr-scanner", "qr-decoder", "bulk-barcode", "qr-wifi"]} /></div>
     </>
   );

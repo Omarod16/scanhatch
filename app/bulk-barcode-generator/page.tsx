@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -55,6 +56,7 @@ upca,Product C,036000291452`}</pre>
           single barcode, use the <a href="/barcode-generator/">Barcode Generator</a>.
         </p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="bulk" /></div>
       <div className="container-page"><RelatedTools ids={["barcode-generator", "barcode-validator", "barcode-scanner", "check-digit", "ean-upc-validator", "bulk-qr"]} /></div>
     </>
   );

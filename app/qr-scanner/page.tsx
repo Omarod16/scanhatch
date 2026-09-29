@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -39,6 +40,7 @@ export default function QrScannerPage() {
           <li>It may not be a QR code at all. Try the <a href="/scanner/">universal scanner</a>.</li>
         </ul>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="scanner" /></div>
       <div className="container-page"><RelatedTools ids={["qr-decoder", "qr-generator", "scanner", "barcode-scanner", "qr-validator", "qr-wifi"]} /></div>
     </>
   );

@@ -38,7 +38,6 @@ export default function QrCodeGeneratorPage() {
 
       <div className="container-page mt-6">
         <QrGenerator />
-        <PrivacyNotice variant="generator" className="mt-8" />
       </div>
 
       <article className="container-page prose-page mt-20 max-w-3xl">
@@ -83,6 +82,7 @@ export default function QrCodeGeneratorPage() {
         </p>
       </article>
 
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="generator" /></div>
       <div className="container-page">
         <RelatedTools ids={["qr-validator", "qr-scanner", "qr-decoder", "qr-wifi", "qr-vcard"]} />
       </div>

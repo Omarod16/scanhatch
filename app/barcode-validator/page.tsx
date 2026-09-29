@@ -27,7 +27,7 @@ export default function BarcodeValidatorPage() {
       <ToolPageHeader name="Barcode Validator" title="Barcode Validator">
         <p>Choose a format and enter the number or text. You&apos;ll see whether it&apos;s valid and exactly which rule passes or fails.</p>
       </ToolPageHeader>
-      <div className="container-page mt-6 max-w-3xl"><BarcodeValidator tool="barcode-validator" formats={["ean13", "ean8", "upca", "upce", "itf14", "itf", "code128", "code39", "code93", "codabar", "msi", "pharmacode"]} /><PrivacyNotice variant="validator" className="mt-8" /></div>
+      <div className="container-page mt-6 max-w-3xl"><BarcodeValidator tool="barcode-validator" formats={["ean13", "ean8", "upca", "upce", "itf14", "itf", "code128", "code39", "code93", "codabar", "msi", "pharmacode"]} /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>What each format is checked for</h2>
         <p>The validator only applies rules the format itself defines. Formats without a check digit are checked for structure alone.</p>
@@ -46,6 +46,7 @@ export default function BarcodeValidatorPage() {
         <h2>Spaces and hyphens</h2>
         <p>Numbers printed under barcodes are often grouped with spaces (like 4 006381 333931). For numeric formats, spaces and hyphens are ignored and you&apos;re told when that happens. For text formats such as Code 128 and Code 39, spaces are part of the data and are kept.</p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="validator" /></div>
       <div className="container-page"><RelatedTools ids={["check-digit", "ean-upc-validator", "itf-14-validator", "barcode-generator", "barcode-scanner", "barcode-decoder"]} /></div>
     </>
   );

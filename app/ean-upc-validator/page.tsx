@@ -23,7 +23,7 @@ export default function EanUpcValidatorPage() {
           <p className="mb-4 text-sm text-fog">Enter a UPC-E to expand it, or a UPC-A to see whether it can be shortened.</p>
           <UpcConverter />
         </section>
-      <PrivacyNotice variant="validator" className="mt-8" /></div>
+      </div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>How EAN and UPC numbers relate</h2>
         <p>
@@ -53,6 +53,7 @@ export default function EanUpcValidatorPage() {
           <li><strong>Other prefixes</strong> show which national GS1 organisation issued the company&apos;s prefix. They don&apos;t reveal where a product was made.</li>
         </ul>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="validator" /></div>
       <div className="container-page"><RelatedTools ids={["check-digit", "barcode-validator", "barcode-generator", "itf-14-validator", "barcode-scanner", "barcode-decoder"]} /></div>
     </>
   );

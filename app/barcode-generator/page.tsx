@@ -38,7 +38,6 @@ export default function BarcodeGeneratorPage() {
 
       <div className="container-page mt-6">
         <BarcodeGenerator />
-        <PrivacyNotice variant="generator" className="mt-8" />
       </div>
 
       <div className="container-page mt-20 max-w-3xl">
@@ -67,6 +66,7 @@ export default function BarcodeGeneratorPage() {
         </div>
       </div>
 
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="generator" /></div>
       <div className="container-page">
         <RelatedTools ids={["barcode-validator", "check-digit", "barcode-scanner", "ean-upc-validator", "itf-14-validator", "barcode-decoder"]} />
       </div>

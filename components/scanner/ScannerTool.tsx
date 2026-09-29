@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from "react";
 import { Tabs } from "@/components/ui/Tabs";
-import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import type { NormalisedResult, ScanMode } from "@/lib/scanner/formats";
 import { useScanHistory } from "@/lib/scanner/history";
 import { CameraScanner } from "./CameraScanner";
@@ -24,7 +23,6 @@ export function ScannerTool({ mode }: { mode: ScanMode }) {
 
   return (
     <div>
-      <PrivacyNotice variant="scanner" className="mb-5" />
       <Tabs
         label="Scan method"
         active={tab}
@@ -48,15 +46,19 @@ export function ScannerTool({ mode }: { mode: ScanMode }) {
   );
 }
 
-/** Image-only decoder with session history. */
-export function DecoderTool({ mode }: { mode: ScanMode }) {
+/**
+ * Image-only decoder with session history.
+ * hideEmptyHistory: show the scan-history section only once there is at least one scan.
+ */
+export function DecoderTool({ mode, hideEmptyHistory = false }: { mode: ScanMode; hideEmptyHistory?: boolean }) {
   const history = useScanHistory();
   const onImage = useCallback((r: NormalisedResult) => history.add({ format: r.formatLabel, value: r.value, source: "image" }), [history]);
   return (
     <div>
-      <PrivacyNotice variant="scanner" className="mb-5" />
       <ImageDecoder mode={mode} onDecoded={onImage} />
-      <ScanHistory entries={history.entries} onRemove={history.remove} onClear={history.clear} />
+      {(!hideEmptyHistory || history.entries.length > 0) && (
+        <ScanHistory entries={history.entries} onRemove={history.remove} onClear={history.clear} />
+      )}
     </div>
   );
 }

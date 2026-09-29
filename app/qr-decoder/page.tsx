@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
 import { DecoderTool } from "@/components/scanner/ScannerTool";
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
 
 const DESCRIPTION = "Decode a QR code from an image, screenshot or photo. Upload, drag and drop or paste a PNG, JPG or WEBP and see its content. No upload to any server.";
@@ -12,9 +13,9 @@ export default function QrDecoderPage() {
     <>
       <JsonLd data={[webAppJsonLd({ name: "ScanHatch QR Decoder", description: DESCRIPTION, path: "/qr-decoder/" }), breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "QR Decoder", path: "/qr-decoder/" }])]} />
       <ToolPageHeader name="QR Decoder" title="QR Code Decoder">
-        <p>Read a QR code from a picture: a screenshot, a photo, or an image someone sent you. Handy when the code is on the same phone you&apos;d scan it with.</p>
+        <p>Upload, drop or paste an image to read the QR code in it.</p>
       </ToolPageHeader>
-      <div className="container-page mt-6 max-w-3xl"><DecoderTool mode="qr" /></div>
+      <div className="container-page mt-6 max-w-3xl"><DecoderTool mode="qr" hideEmptyHistory /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>When to decode from an image</h2>
         <ul>
@@ -32,6 +33,7 @@ export default function QrDecoderPage() {
         <h2>Is my image uploaded?</h2>
         <p>No. The image is read and decoded by your browser. ScanHatch never receives the file or what it contains.</p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="scanner" /></div>
       <div className="container-page"><RelatedTools ids={["qr-scanner", "barcode-decoder", "qr-generator", "qr-validator", "scanner", "barcode-generator"]} /></div>
     </>
   );

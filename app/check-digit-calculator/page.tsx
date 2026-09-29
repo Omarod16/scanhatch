@@ -25,7 +25,7 @@ export default function CheckDigitPage() {
       <ToolPageHeader name="Check Digit Calculator" title="Check Digit Calculator">
         <p>Enter the digits of an EAN, UPC or ITF-14 number without the last digit, and see its check digit and how it was worked out.</p>
       </ToolPageHeader>
-      <div className="container-page mt-6 max-w-3xl"><CheckDigitCalculator /><PrivacyNotice variant="validator" className="mt-8" /></div>
+      <div className="container-page mt-6 max-w-3xl"><CheckDigitCalculator /></div>
       <article className="container-page prose-page mt-16 max-w-3xl">
         <h2>How the GS1 check digit works</h2>
         <p>
@@ -60,6 +60,7 @@ export default function CheckDigitPage() {
           UPC-E is 0425261{gs1CheckDigitSteps(upceBody).check}. The <a href="/ean-upc-validator/">EAN/UPC Validator</a> includes a converter that does this for you.
         </p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="validator" /></div>
       <div className="container-page"><RelatedTools ids={["barcode-validator", "ean-upc-validator", "itf-14-validator", "barcode-generator", "barcode-scanner", "bulk-barcode"]} /></div>
     </>
   );

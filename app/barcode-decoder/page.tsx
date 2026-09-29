@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -33,6 +34,7 @@ export default function BarcodeDecoderPage() {
         <h2>Formats</h2>
         <p>Reads {READABLE_FORMAT_NAMES.barcode.join(", ")}. MSI and Pharmacode can be generated on ScanHatch but can&apos;t be decoded here.</p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="scanner" /></div>
       <div className="container-page"><RelatedTools ids={["barcode-scanner", "barcode-generator", "qr-decoder", "barcode-validator", "check-digit", "scanner"]} /></div>
     </>
   );

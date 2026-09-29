@@ -1,3 +1,4 @@
+import { PrivacyNotice } from "@/components/privacy/PrivacyNotice";
 import { JsonLd } from "@/components/JsonLd";
 import { RelatedTools } from "@/components/ToolLinks";
 import { ToolPageHeader } from "@/components/ToolPageHeader";
@@ -40,6 +41,7 @@ export default function ScannerPage() {
           off as soon as a code is found, when you pause, or when you switch to another tab.
         </p>
       </article>
+      <div className="container-page mt-10 max-w-3xl"><PrivacyNotice variant="scanner" /></div>
       <div className="container-page"><RelatedTools ids={["qr-scanner", "barcode-scanner", "qr-decoder", "barcode-decoder", "qr-generator", "barcode-generator"]} /></div>
     </>
   );
