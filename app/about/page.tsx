@@ -28,8 +28,8 @@ export default function AboutPage() {
             </p>
             <ul>
               <li><strong>No accounts.</strong> Every tool works straight away, with nothing to sign up for.</li>
-              <li><strong>Your data stays with you.</strong> Codes are created, scanned and checked in your browser. What you type or upload isn&apos;t sent to ScanHatch.</li>
-              <li><strong>Codes that don&apos;t expire.</strong> QR codes made here contain their content directly, so they keep working without ScanHatch.</li>
+              <li><strong>Your data stays with you.</strong> Codes are created, scanned and checked in your browser. The QR and barcode content you enter or upload is processed in your browser rather than sent to ScanHatch&apos;s servers.</li>
+              <li><strong>No ScanHatch expiry.</strong> QR codes created here contain their content directly, so they don&apos;t depend on a ScanHatch subscription or account to keep working.</li>
               <li><strong>Honest limits.</strong> The tools say what they can&apos;t do, such as registering barcode numbers, which only GS1 can issue.</li>
             </ul>
           </>,
