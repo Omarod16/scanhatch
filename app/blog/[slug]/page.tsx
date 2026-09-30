@@ -9,6 +9,7 @@ import { ARTICLES, article, articlePath, formatDate, readingMinutes } from "@/li
 import { Inline } from "@/lib/blog/inline";
 import { CATEGORY_LABELS } from "@/lib/blog/types";
 import { articleJsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { OWNER } from "@/lib/site";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => ARTICLES.map((a) => ({ slug: a.slug }));
@@ -48,7 +49,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <p className="text-sm font-semibold text-cyan"><Link href={`/blog/#${a.category}`} className="hover:underline">{CATEGORY_LABELS[a.category]}</Link></p>
           <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">{a.title}</h1>
           <p className="mt-3 text-sm text-mist">
-            By ScanHatch · Published <time dateTime={a.publishedAt}>{formatDate(a.publishedAt)}</time>
+            By <Link href="/about/" className="text-fog underline underline-offset-2 hover:text-white">ScanHatch</Link> (run by {OWNER.operatorName}) · Published <time dateTime={a.publishedAt}>{formatDate(a.publishedAt)}</time>
             {a.updatedAt !== a.publishedAt && <> · Updated <time dateTime={a.updatedAt}>{formatDate(a.updatedAt)}</time></>}
             {" "}· {readingMinutes(a)} min read
           </p>
@@ -74,6 +75,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   <p><Inline text={f.a} /></p>
                 </div>
               ))}
+            </section>
+          )}
+          {a.sources && a.sources.length > 0 && (
+            <section aria-labelledby="sources">
+              <h2 id="sources">Sources</h2>
+              <ul>
+                {a.sources.map((src) => (
+                  <li key={src.url}>
+                    <a href={src.url} rel="noopener noreferrer" className="text-cyan underline underline-offset-2">{src.title}</a>
+                    {" "}({src.publisher}): {src.supports}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-mist">ScanHatch isn&apos;t affiliated with these organisations.</p>
             </section>
           )}
         </div>

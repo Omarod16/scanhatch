@@ -1,4 +1,5 @@
 import { plainText, linksIn } from "./inline";
+import { ARTICLE_SOURCES, SOURCES_ADDED } from "./sources";
 import type { Article, Block } from "./types";
 import { QR_BASICS } from "./articles/qr-basics";
 import { QR_GUIDES } from "./articles/qr-guides";
@@ -6,8 +7,10 @@ import { BARCODE_ARTICLES } from "./articles/barcodes";
 
 const ALL: Article[] = [...QR_BASICS, ...QR_GUIDES, ...BARCODE_ARTICLES];
 
-/** Published articles, newest first (ties keep editorial order). */
-export const ARTICLES: Article[] = ALL.filter((a) => !a.draft);
+/** Published articles, newest first (ties keep editorial order). Articles with sources were updated when they were added. */
+export const ARTICLES: Article[] = ALL.filter((a) => !a.draft).map((a) =>
+  ARTICLE_SOURCES[a.slug] ? { ...a, sources: ARTICLE_SOURCES[a.slug], updatedAt: SOURCES_ADDED } : a,
+);
 
 export const article = (slug: string) => ARTICLES.find((a) => a.slug === slug);
 export const articlePath = (slug: string) => `/blog/${slug}/`;

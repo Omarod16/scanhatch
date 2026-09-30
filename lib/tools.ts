@@ -92,7 +92,7 @@ export const toolById = (id: string) => {
 export const PAGES = {
   tools: { name: "All tools", href: "/tools/", status: "live" as ToolStatus },
   blog: { name: "Blog", href: "/blog/", status: "live" as ToolStatus },
-  about: { name: "About", href: "/about/", status: "soon" as ToolStatus },
+  about: { name: "About", href: "/about/", status: "live" as ToolStatus },
   contact: { name: "Contact", href: "/contact/", status: "live" as ToolStatus },
   privacy: { name: "Privacy Policy", href: "/privacy-policy/", status: "live" as ToolStatus },
   terms: { name: "Terms", href: "/terms/", status: "live" as ToolStatus },

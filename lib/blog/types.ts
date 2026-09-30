@@ -24,6 +24,15 @@ export type Block =
   | { type: "example"; label: string; text: string }
   | { type: "note"; text: string };
 
+/** An external reference that directly supports claims in an article. */
+export interface ArticleSource {
+  title: string;
+  publisher: string;
+  url: string;
+  /** What in the article this source supports. */
+  supports: string;
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -41,6 +50,8 @@ export interface Article {
   faq?: { q: string; a: string }[];
   relatedTools: string[];
   relatedArticles: string[];
+  /** Primary sources for factual technical claims (optional). */
+  sources?: ArticleSource[];
   /** The main next step at the end of the article. */
   cta: { label: string; href: string; text: string };
 }
