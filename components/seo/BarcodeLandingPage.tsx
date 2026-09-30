@@ -11,5 +11,5 @@ export function barcodeLandingMetadata(slug: string) {
 
 export function BarcodeLandingPage({ slug }: { slug: string }) {
   const page = landing(slug) as BarcodeLanding;
-  return <LandingLayout page={page} tool={<BarcodeGenerator initialFormat={page.format} guidePage="/barcode-generator/" />} />;
+  return <LandingLayout page={page} tool={<BarcodeGenerator initialFormat={page.format} />} />;
 }

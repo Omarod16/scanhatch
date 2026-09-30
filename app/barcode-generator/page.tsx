@@ -5,7 +5,6 @@ import { RelatedTools } from "@/components/ToolLinks";
 import { BarcodeGenerator } from "@/components/barcode/BarcodeGenerator";
 import { FormatGuideSection } from "@/components/barcode/FormatGuideSection";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
-import { PRIVACY_PROMISE } from "@/lib/site";
 
 const TITLE = "Barcode Generator – EAN-13, UPC, Code 128 & More";
 const DESCRIPTION =
@@ -32,7 +31,7 @@ export default function BarcodeGeneratorPage() {
         </nav>
         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Barcode Generator</h1>
         <p className="mt-3 max-w-2xl text-fog">
-          Choose a format, enter your data and download a print-ready barcode. Check digits are calculated or validated for you. {PRIVACY_PROMISE}
+          Choose a format, enter your data and download a print-ready barcode.
         </p>
       </div>
 

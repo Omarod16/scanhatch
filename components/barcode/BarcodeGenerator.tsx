@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { ColorField, Range, Segmented, SelectField, Toggle } from "@/components/ui/controls";
 import { Tabs } from "@/components/ui/Tabs";
@@ -33,9 +32,8 @@ const GUARDS: { value: CodabarGuard; label: string }[] = ["A", "B", "C", "D"].ma
 
 /**
  * `initialFormat` preselects a format (used by format landing pages).
- * `guidePage` is where the per-format guide lives; "" means this page.
  */
-export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: { initialFormat?: BarcodeFormatId; guidePage?: string }) {
+export function BarcodeGenerator({ initialFormat = "code128" }: { initialFormat?: BarcodeFormatId }) {
   const dataId = useId();
   const [formatId, setFormatId] = useState<BarcodeFormatId>(initialFormat);
   const [inputs, setInputs] = useState<Record<string, string>>({});
@@ -125,8 +123,6 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
 
   const contentTab = (
     <div className="space-y-6">
-      <FormatPicker value={formatId} onChange={(id) => chooseFormat(id)} />
-
       <div>
         <label htmlFor={dataId} className="label">Barcode data</label>
         {format.kind === "2d" ? (
@@ -144,14 +140,11 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
           />
         )}
         <div id={`${dataId}-help`}>
-          {showError ? <p className="field-error" role="alert">{v.error}</p> : <p className="hint">{format.instructions}</p>}
+          {showError ? <p className="field-error" role="alert">{v.error}</p> : format.instructions ? <p className="hint">{format.instructions}</p> : null}
         </div>
-        {!input && (
-          <button type="button" className="btn-ghost mt-2 min-h-9 px-2 text-sm" onClick={() => setInputs((p) => ({ ...p, [formatId]: format.example }))}>
-            Use example data
-          </button>
-        )}
       </div>
+
+      <FormatPicker value={formatId} onChange={(id) => chooseFormat(id)} />
 
       {formatId === "code39" && (
         <Toggle label="Add mod 43 check character" checked={opts.code39Check} onChange={(c) => setOpts((o) => ({ ...o, code39Check: c }))} hint="Optional. Only turn this on if your scanner or system expects it." />
@@ -178,19 +171,6 @@ export function BarcodeGenerator({ initialFormat = "code128", guidePage = "" }: 
         </div>
       )}
 
-      <p className="text-sm text-mist">
-        <a href={`${guidePage}#guide-${formatId}`} className="text-cyan underline underline-offset-2">Read the {format.name} guide</a> for data rules, common mistakes and printing advice.
-      </p>
-      <p className="text-sm text-mist">
-        Checking an existing number?{" "}
-        {["ean13", "ean8", "upca", "upce"].includes(formatId) ? (
-          <><Link href={`/ean-upc-validator/#${formatId}`} className="text-cyan underline underline-offset-2">EAN/UPC Validator</Link> · <Link href={`/check-digit-calculator/#${formatId === "upce" ? "upca" : formatId}`} className="text-cyan underline underline-offset-2">Check Digit Calculator</Link></>
-        ) : formatId === "itf14" ? (
-          <><Link href="/itf-14-validator/" className="text-cyan underline underline-offset-2">ITF-14 Validator</Link> · <Link href="/check-digit-calculator/#itf14" className="text-cyan underline underline-offset-2">Check Digit Calculator</Link></>
-        ) : (
-          <Link href={`/barcode-validator/#${["datamatrix", "pdf417", "aztec"].includes(formatId) ? "" : formatId}`} className="text-cyan underline underline-offset-2">Barcode Validator</Link>
-        )}
-      </p>
     </div>
   );
 

@@ -140,7 +140,7 @@ export const BARCODE_FORMATS: BarcodeFormat[] = [
   {
     id: "code128", name: "Code 128", bcid: "code128", group: "general", kind: "1d",
     summary: "General-purpose high-density barcode for letters, numbers and symbols.",
-    placeholder: "ABC-12345", instructions: "Enter the text or data to encode.", example: "SCANHATCH-128",
+    placeholder: "ABC-12345", instructions: "", example: "SCANHATCH-128",
     quietZone: 10, moduleMm: 0.33, heightMm: 15, textPlacement: true, decodable: true,
     validate: (input) => {
       if (!input) return empty();
