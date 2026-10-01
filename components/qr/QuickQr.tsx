@@ -53,7 +53,7 @@ export function QuickQr({ framed = true }: { framed?: boolean }) {
             href={norm.url ? `/qr-code-generator/#url=${encodeURIComponent(norm.url)}` : "/qr-code-generator/"}
             className="btn-ghost"
           >
-            Customise colours &amp; logo
+            Customise
           </Link>
         </div>
         <p role="status" className="mt-2 min-h-5 text-sm text-mist">{msg}</p>

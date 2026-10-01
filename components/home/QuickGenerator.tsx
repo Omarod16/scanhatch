@@ -21,7 +21,7 @@ export function QuickGenerator() {
         active={tab}
         onChange={setTab}
         tabs={[
-          { id: "qr", label: "QR code", content: <QuickQr framed={false} /> },
+          { id: "qr", label: "QR Code", content: <QuickQr framed={false} /> },
           { id: "barcode", label: "Barcode", content: <QuickBarcode /> },
         ]}
       />
