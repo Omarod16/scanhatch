@@ -11,7 +11,7 @@ import { ContentTypePicker } from "./ContentTypePicker";
 import { DesignPanel } from "./DesignPanel";
 import { ExportBar } from "./ExportBar";
 import { LogoPanel } from "./LogoPanel";
-import { PreflightPanel } from "./PreflightPanel";
+import { PreflightBadge, PreflightPanel } from "./PreflightPanel";
 import { QrPreview } from "./QrPreview";
 import { DEFAULT_OUTPUT, SizePanel, type OutputSettings } from "./SizePanel";
 import { runPreflight, type FixTarget } from "@/lib/qr/preflight";
@@ -94,6 +94,7 @@ export function QrGenerator({ initialType = "url" }: { initialType?: ContentType
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_440px]">
       <div className="min-w-0">
+        <h2 className="sr-only">QR code settings</h2>
         <Tabs
           label="QR code settings"
           active={tab}
@@ -120,15 +121,16 @@ export function QrGenerator({ initialType = "url" }: { initialType?: ContentType
             { id: "advanced", label: "Advanced", content: <AdvancedPanel style={style} set={set} payload={payload} matrix={qr.matrix} /> },
           ]}
         />
-        <button type="button" onClick={() => { setStyle(DEFAULT_STYLE); setOutput(DEFAULT_OUTPUT); }} className="btn-ghost mt-6 px-0 text-mist">
-          Reset design to default
-        </button>
+        <div className="mt-6">
+          <PreflightPanel report={preflight} onFix={fixSetting} />
+        </div>
       </div>
 
       <aside aria-label="Preview and download" className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain">
         <div className="rounded-2xl border border-line bg-ink-2 p-4 sm:p-6">
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
             <h2 className="text-base font-bold text-white">Preview</h2>
+            <PreflightBadge report={preflight} />
           </div>
           <QrPreview
             svg={qr.svg}
@@ -138,12 +140,8 @@ export function QrGenerator({ initialType = "url" }: { initialType?: ContentType
             notes={built.ok ? built.notes : undefined}
             emptyText="Fill in the content to see your QR code."
           />
-          {/* Phones/tablets: downloads straight after the preview, preflight below. Desktop: preflight first. */}
-          <div className="flex flex-col">
-            <div className="order-2 lg:order-1"><PreflightPanel report={preflight} onFix={fixSetting} /></div>
-            <div className="order-1 mt-5 lg:order-2">
-              <ExportBar svg={qr.svg} style={style} output={output} filename={`scanhatch-qr-${typeId}`} />
-            </div>
+          <div className="mt-5">
+            <ExportBar svg={qr.svg} style={style} output={output} filename={`scanhatch-qr-${typeId}`} />
           </div>
         </div>
       </aside>

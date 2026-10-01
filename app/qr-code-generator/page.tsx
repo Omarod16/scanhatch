@@ -5,7 +5,6 @@ import { QrGenerator } from "@/components/qr/QrGenerator";
 import { RelatedTools } from "@/components/ToolLinks";
 import { QR_LANDINGS } from "@/lib/landing/qr";
 import { breadcrumbJsonLd, pageMetadata, webAppJsonLd } from "@/lib/seo";
-import { PRIVACY_PROMISE } from "@/lib/site";
 
 const TITLE = "QR Code Generator – Custom Colours, Logos & SVG";
 const DESCRIPTION =
@@ -32,7 +31,7 @@ export default function QrCodeGeneratorPage() {
         </nav>
         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">QR Code Generator</h1>
         <p className="mt-3 max-w-2xl text-fog">
-          Pick what the code should do, fill in the details, then style and download it. {PRIVACY_PROMISE}
+          Choose what the code does, fill in the details, then style and download it.
         </p>
       </div>
 
