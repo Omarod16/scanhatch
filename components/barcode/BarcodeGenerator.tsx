@@ -9,24 +9,12 @@ import {
   BARCODE_FORMATS, DEFAULT_FORMAT_OPTIONS, barcodeFormat, isBarcodeFormatId,
   type BarcodeFormat, type BarcodeFormatId, type CodabarGuard, type FormatOptions, type MsiCheck,
 } from "@/lib/barcode/formats";
-import {
-  DEFAULT_BARCODE_STYLE, cleanBwipError, rasterSize, renderBarcode,
-  type BarcodeStyle, type BwipLike, type Rotation,
-} from "@/lib/barcode/render";
+import { DEFAULT_BARCODE_STYLE, cleanBwipError, rasterSize, renderBarcode, type BarcodeStyle, type BwipLike, type Rotation, styleFor } from "@/lib/barcode/render";
 import { checkBarcode } from "@/lib/barcode/warnings";
 import type { PageSize } from "@/lib/downloads/export";
 import { safeHex } from "@/lib/qr/color";
 import { BarcodeExport } from "./BarcodeExport";
 import { FormatPicker } from "./FormatPicker";
-
-const styleFor = (f: BarcodeFormat, prev: BarcodeStyle): BarcodeStyle => ({
-  ...prev,
-  quietZone: f.quietZone,
-  moduleMm: f.moduleMm ?? prev.moduleMm,
-  heightMm: f.heightMm ?? prev.heightMm,
-  showText: f.id !== "pharmacode",
-  textPlacement: f.textPlacement ? prev.textPlacement : "below",
-});
 
 const GUARDS: { value: CodabarGuard; label: string }[] = ["A", "B", "C", "D"].map((g) => ({ value: g as CodabarGuard, label: g }));
 

@@ -135,3 +135,13 @@ export function rasterSize(r: RenderedBarcode, dpi: number) {
     effectiveDpi: Math.round((pxPerUnit * 25.4) / r.unitMm),
   };
 }
+
+/** Style adjusted to a format's recommended quiet zone, module width, height and text. */
+export const styleFor = (f: BarcodeFormat, prev: BarcodeStyle): BarcodeStyle => ({
+  ...prev,
+  quietZone: f.quietZone,
+  moduleMm: f.moduleMm ?? prev.moduleMm,
+  heightMm: f.heightMm ?? prev.heightMm,
+  showText: f.id !== "pharmacode",
+  textPlacement: f.textPlacement ? prev.textPlacement : "below",
+});

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { QuickQr } from "@/components/qr/QuickQr";
+import { QuickGenerator } from "@/components/home/QuickGenerator";
 import { ToolItem } from "@/components/ToolLinks";
 import { absoluteUrl } from "@/lib/seo";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -26,23 +26,9 @@ export default function Home() {
             Create QR Codes &amp; Barcodes in Seconds
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fog">
-            Generate, customise, scan and decode QR codes and barcodes online. Fast, free and designed with privacy in mind.
+            Create, scan and decode QR codes and barcodes for free, right in your browser.
           </p>
-          <p className="mt-6 text-sm text-mist">
-            Have a picture of a code?{" "}
-            <Link href="/qr-decoder/" className="font-semibold text-cyan hover:underline">Decode QR</Link>
-            {" / "}
-            <Link href="/barcode-decoder/" className="font-semibold text-cyan hover:underline">Decode Barcode</Link>
-          </p>
-          <p className="mt-2 text-sm text-mist">
-            Check a code:{" "}
-            <Link href="/barcode-validator/" className="font-semibold text-cyan hover:underline">Barcode Validator</Link>
-            {" · "}
-            <Link href="/qr-validator/" className="font-semibold text-cyan hover:underline">QR Validator</Link>
-            {" · "}
-            <Link href="/check-digit-calculator/" className="font-semibold text-cyan hover:underline">Check Digit Calculator</Link>
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
             <Link href="/barcode-generator/" className="btn-secondary">Create Barcode</Link>
             <Link href="/scanner/" className="btn-secondary">Scan Code</Link>
@@ -51,27 +37,11 @@ export default function Home() {
       </section>
 
       <section className="container-page" aria-labelledby="quick-qr">
-        <h2 id="quick-qr" className="sr-only">Quick QR code generator</h2>
-        <QuickQr />
+        <h2 id="quick-qr" className="sr-only">Quick QR code and barcode generator</h2>
+        <QuickGenerator />
       </section>
 
-      <section className="container-page mt-24" aria-labelledby="privacy">
-        <div className="grid gap-8 border-y border-line py-12 md:grid-cols-[1fr_2fr]">
-          <h2 id="privacy" className="text-2xl font-bold tracking-tight text-white">Private by design</h2>
-          <div className="space-y-4 text-fog">
-            <p>
-              QR codes and barcodes are created, scanned and checked in your browser. The link, WiFi password or
-              contact details you enter are processed on your own device and aren&apos;t sent to ScanHatch.
-            </p>
-            <p>
-              No account is needed, and logos you add stay on your device. Recent scans are kept only in this
-              browser tab until you close it. The <Link href="/privacy-policy/" className="text-cyan underline underline-offset-2">privacy policy</Link> has the details.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="container-page mt-20" aria-labelledby="all-tools">
+      <section className="container-page mt-12" aria-labelledby="all-tools">
         <div className="flex items-end justify-between gap-4">
           <h2 id="all-tools" className="text-2xl font-bold tracking-tight text-white">Tools</h2>
           <Link href="/tools/" className="text-sm font-semibold text-cyan hover:underline">See all tools</Link>
@@ -87,6 +57,22 @@ export default function Home() {
               </ul>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="container-page mt-20" aria-labelledby="privacy">
+        <div className="grid gap-8 border-y border-line py-12 md:grid-cols-[1fr_2fr]">
+          <h2 id="privacy" className="text-2xl font-bold tracking-tight text-white">Private by design</h2>
+          <div className="space-y-4 text-fog">
+            <p>
+              QR codes and barcodes are created, scanned and checked in your browser. The link, WiFi password or
+              contact details you enter are processed on your own device and aren&apos;t sent to ScanHatch.
+            </p>
+            <p>
+              No account is needed, and logos you add stay on your device. Recent scans are kept only in this
+              browser tab until you close it. The <Link href="/privacy-policy/" className="text-cyan underline underline-offset-2">privacy policy</Link> has the details.
+            </p>
+          </div>
         </div>
       </section>
     </>

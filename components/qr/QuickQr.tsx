@@ -8,8 +8,8 @@ import { normalizeUrl } from "@/lib/qr/content";
 import { DEFAULT_STYLE } from "@/lib/qr/style";
 import { svgDataUri, useQrOutput } from "./useQrOutput";
 
-/** Compact, fully working URL → QR generator for the homepage. */
-export function QuickQr() {
+/** Compact, fully working URL → QR generator for the homepage. `framed={false}` drops the card border (for use inside tabs). */
+export function QuickQr({ framed = true }: { framed?: boolean }) {
   const id = useId();
   const [value, setValue] = useState("");
   const [msg, setMsg] = useState<string | null>(null);
@@ -29,7 +29,7 @@ export function QuickQr() {
   };
 
   return (
-    <div className="grid items-center gap-6 rounded-2xl border border-line bg-ink-2 p-5 sm:grid-cols-[1fr_200px] sm:p-8">
+    <div className={`grid items-center gap-6 sm:grid-cols-[1fr_200px] ${framed ? "rounded-2xl border border-line bg-ink-2 p-5 sm:p-8" : ""}`}>
       <div>
         <label htmlFor={id} className="label">Paste a link to make a QR code</label>
         <input
