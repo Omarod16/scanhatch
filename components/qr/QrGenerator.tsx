@@ -11,8 +11,10 @@ import { ContentTypePicker } from "./ContentTypePicker";
 import { DesignPanel } from "./DesignPanel";
 import { ExportBar } from "./ExportBar";
 import { LogoPanel } from "./LogoPanel";
+import { PreflightPanel } from "./PreflightPanel";
 import { QrPreview } from "./QrPreview";
 import { DEFAULT_OUTPUT, SizePanel, type OutputSettings } from "./SizePanel";
+import { runPreflight, type FixTarget } from "@/lib/qr/preflight";
 import { useQrOutput } from "./useQrOutput";
 
 const initialValues = () =>
@@ -74,7 +76,20 @@ export function QrGenerator({ initialType = "url" }: { initialType?: ContentType
   );
   const set = useCallback(<K extends keyof QrStyle>(key: K, value: QrStyle[K]) => setStyle((s) => ({ ...s, [key]: value })), []);
 
-  const warnCount = qr.warnings.filter((w) => w.level !== "info").length;
+  const empty = !built.ok && type.fields.every((f) => !f.required || typeValues[f.name] === "" || typeValues[f.name] === false || typeValues[f.name] == null);
+  const preflight = useMemo(
+    () => runPreflight({ built, empty, matrix: qr.matrix, buildError: qr.error, style, warnings: qr.warnings, output }),
+    [built, empty, qr, style, output],
+  );
+  const fixSetting = useCallback((target: FixTarget) => {
+    setTab(target);
+    // After the tab switches, bring the settings into view and move keyboard focus to the tab.
+    window.setTimeout(() => {
+      const t = document.querySelector<HTMLElement>('[role="tablist"][aria-label="QR code settings"] [role="tab"][aria-selected="true"]');
+      t?.scrollIntoView({ block: "start", behavior: "smooth" });
+      t?.focus({ preventScroll: true });
+    }, 0);
+  }, []);
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_440px]">
@@ -110,22 +125,25 @@ export function QrGenerator({ initialType = "url" }: { initialType?: ContentType
         </button>
       </div>
 
-      <aside aria-label="Preview and download" className="lg:sticky lg:top-24 lg:self-start">
+      <aside aria-label="Preview and download" className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain">
         <div className="rounded-2xl border border-line bg-ink-2 p-4 sm:p-6">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-base font-bold text-white">Preview</h2>
-            {warnCount > 0 && <span className="rounded-full bg-warn/15 px-2.5 py-0.5 text-xs font-semibold text-warn">{warnCount} to check</span>}
           </div>
           <QrPreview
             svg={qr.svg}
             error={qr.error}
-            warnings={qr.warnings}
+            warnings={[] /* shown in the QR Preflight panel instead */}
             transparent={style.transparent}
             notes={built.ok ? built.notes : undefined}
             emptyText="Fill in the content to see your QR code."
           />
-          <div className="mt-5">
-            <ExportBar svg={qr.svg} style={style} output={output} filename={`scanhatch-qr-${typeId}`} />
+          {/* Phones/tablets: downloads straight after the preview, preflight below. Desktop: preflight first. */}
+          <div className="flex flex-col">
+            <div className="order-2 lg:order-1"><PreflightPanel report={preflight} onFix={fixSetting} /></div>
+            <div className="order-1 mt-5 lg:order-2">
+              <ExportBar svg={qr.svg} style={style} output={output} filename={`scanhatch-qr-${typeId}`} />
+            </div>
           </div>
         </div>
       </aside>
