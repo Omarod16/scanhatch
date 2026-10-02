@@ -28,11 +28,6 @@ export default function Home() {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-fog">
             Create, scan and decode QR codes and barcodes for free, right in your browser.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link href="/qr-code-generator/" className="btn-primary">Create QR Code</Link>
-            <Link href="/barcode-generator/" className="btn-secondary">Create Barcode</Link>
-            <Link href="/scanner/" className="btn-secondary">Scan Code</Link>
-          </div>
         </div>
       </section>
 

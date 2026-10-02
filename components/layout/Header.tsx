@@ -6,9 +6,6 @@ import { LogoMark } from "./Logo";
 import { NAV_LINKS } from "./nav";
 import { ToolSearch } from "./ToolSearch";
 
-const NAV_FIRST = NAV_LINKS.slice(0, 3);   // QR Tools, Barcode Tools, Scanner
-const NAV_LAST = NAV_LINKS.slice(3);       // Tools, Blog
-
 const linkClass = "rounded-lg px-2 py-2 text-sm font-medium text-fog hover:bg-panel hover:text-white lg:px-3";
 
 export function Header() {
@@ -42,18 +39,11 @@ export function Header() {
 
         <nav aria-label="Main" className="hidden min-w-0 flex-1 items-center gap-2 md:flex">
           <ul className="flex items-center">
-            {NAV_FIRST.map((l) => (
+            {NAV_LINKS.map((l) => (
               <li key={l.href}><Link prefetch={false} href={l.href} className={linkClass}>{l.label}</Link></li>
             ))}
           </ul>
-          <div className="ml-auto flex items-center gap-2">
-            <div className="hidden lg:block"><ToolSearch /></div>
-            <ul className="flex items-center">
-              {NAV_LAST.map((l) => (
-                <li key={l.href}><Link prefetch={false} href={l.href} className={linkClass}>{l.label}</Link></li>
-              ))}
-            </ul>
-          </div>
+          <div className="ml-auto hidden lg:block"><ToolSearch /></div>
         </nav>
 
         <div className="ml-auto flex items-center gap-1 md:ml-0">
