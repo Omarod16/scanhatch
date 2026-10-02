@@ -5,6 +5,7 @@ import { isLoadError } from "@/lib/errors";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import { formatsFor, normaliseResult, type NormalisedResult, type ScanMode } from "@/lib/scanner/formats";
+import { pointsOf, type DetectionFrame } from "@/lib/scanner/frame";
 import { toImageData } from "@/lib/scanner/image";
 import { decodeImageData, loadDecoder } from "@/lib/scanner/zxing";
 
@@ -57,7 +58,7 @@ function cameraErrorMessage(e: unknown): string {
  * Camera scanning logic shared by the scanner pages (CameraScanner) and the homepage quick scanner.
  * Owns the camera stream, the scan loop and their lifecycle; the caller supplies the layout.
  */
-export function useCameraScanner(mode: ScanMode, onResult: (r: NormalisedResult) => void) {
+export function useCameraScanner(mode: ScanMode, onResult: (r: NormalisedResult) => void, onFrame?: (f: DetectionFrame) => void) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const timerRef = useRef<number | null>(null);
@@ -98,6 +99,12 @@ export function useCameraScanner(mode: ScanMode, onResult: (r: NormalisedResult)
           const results = await decodeImageData(data, { formats: formatsFor(mode), tryHarder: false, maxNumberOfSymbols: 1 });
           if (results.length && phaseRef.current === "scanning") {
             const r = results[0];
+            // Optional: hand over the frame the code was read from (kept in memory by the caller; never stored or sent).
+            if (onFrame && canvasRef.current) {
+              try {
+                onFrame({ src: canvasRef.current.toDataURL("image/jpeg", 0.82), width: data.width, height: data.height, points: pointsOf((r as { position?: unknown }).position) });
+              } catch { /* the snapshot is optional */ }
+            }
             setPhase("found");
             stopCamera();
             track("scanner_used", { source: "camera" });
@@ -113,7 +120,7 @@ export function useCameraScanner(mode: ScanMode, onResult: (r: NormalisedResult)
       timerRef.current = window.setTimeout(tick, SCAN_INTERVAL_MS);
     };
     tick();
-  }, [mode, onResult, stopCamera]);
+  }, [mode, onResult, onFrame, stopCamera]);
 
   const start = useCallback(async (wantedDevice?: string) => {
     setError(null);
