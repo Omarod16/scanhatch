@@ -11,9 +11,10 @@
 # script-src needs 'unsafe-inline' for Next.js's inline bootstrap scripts and
 # 'wasm-unsafe-eval' to compile the ZXing WebAssembly decoder. connect-src/img-src
 # limited to 'self' means page scripts can't send data to other hosts.
-# Enabling AdSense or a CMP later REQUIRES updating this policy (docs/LEGAL-AND-ADS-SETUP.md).
+# script-src also allows https://pagead2.googlesyndication.com ONLY so the AdSense site-verification
+# script can load. Showing ads or adding a CMP later needs a wider policy (docs/LEGAL-AND-ADS-SETUP.md).
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' blob:; worker-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' blob:; worker-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=(), usb=()

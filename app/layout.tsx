@@ -46,6 +46,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={manrope.variable}>
+      <head>
+        {/* Google AdSense site-ownership verification only: no ad units, no Auto Ads. Added once here for every page. */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4966822673763184" crossOrigin="anonymous" />
+      </head>
       <body className="flex min-h-dvh flex-col font-sans">
         <Header />
         <main id="main" className="flex-1">
